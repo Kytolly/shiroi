@@ -1,5 +1,5 @@
 本主题按照本人使用的 Typora 编辑器风格定制，旨在打造一款轻量级的`TeX`笔记样式。
-本主题改编自 [Typo 主题](https://github.com/rankangkang/hexo-theme-typo)。
+本主题改编自 [Typo](https://github.com/rankangkang/hexo-theme-typo)。
 
 如果你使用本主题，作者建议按照如下规则组织你的写作：
 1. 中英文混杂时，应该确保中间有空格，不直接连接。如果有连接的必要，使用 ` ` ` ` 语法。

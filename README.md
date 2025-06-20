@@ -1,31 +1,17 @@
-<h1 align="center">typo</h1>
+# shiroi
+ a Hexo theme(adapted by Typo) tailored for TeX fancier.
 
-<p align="center">一个简单的 hexo 主题</p>
 
-<p align='center'>
-简体中文 ｜ <a href="https://github.com/rankangkang/hexo-theme-typo/blob/main/README.en.md">English</a>
-</p>
-
-## ✨ 特性
-
-- 黑夜模式
-- 代码高亮
-  - light mode: atom-one-light
-  - dark mode: atom-one-dark
-- 多样字体
-  - 文章使用 Montserrat 字体
-  - 代码使用 JetBrains Mono 字体
-
-## 📦 安装
+## Installation
 
 ```bash
-git clone --depth=1 https://github.com/rankangkang/hexo-theme-typo.git themes/typo
+
 ```
 
 并在 `_config.yaml` 中进行如下配置：
 
 ```yaml _config.yaml
-theme: typo
+theme: shiroi
 ```
 
 ## 🌈 配置

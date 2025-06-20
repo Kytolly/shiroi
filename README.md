@@ -1,5 +1,5 @@
 # shiroi
- a Hexo theme(adapted by Typo) tailored for TeX fancier.
+a Hexo theme(adapted by Typo) tailored for TeX fancier.
 
 
 ## Installation

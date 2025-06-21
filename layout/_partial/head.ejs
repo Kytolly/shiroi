@@ -35,6 +35,11 @@
     };
     </script>
     <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <% } %>
+  
+  <!-- 图片样式 -->
+  <% if (theme.image && theme.image.enable) { %>
+  <%- css('css/image-handler.css') %>
   <% } %>
   
   <%- css('css/root.css') %>

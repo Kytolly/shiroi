@@ -1,0 +1,19 @@
+.post-content .image-figure {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+.post-content img.centered {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+.post-content figcaption {
+  margin-top: 0.8em;
+  font-size: 0.9em;
+  color: #888;
+} 

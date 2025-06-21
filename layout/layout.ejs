@@ -8,6 +8,20 @@
     <%- body %>
   </main>
   <%- partial('_partial/footer') %>
+
+  <!-- 图片样式 -->
+  <% if (theme.image && theme.image.enable) { %>
+    <script>
+      const THEME_CONFIG = {
+        image: {
+          center: <%- theme.image.center || false %>,
+          caption: <%- theme.image.caption || false %>
+        }
+      };
+    </script>
+    <%- js('js/image-handler.js') %>
+  <% } %>
+
   <%- js('js/theme.js') %>
 </body>
 

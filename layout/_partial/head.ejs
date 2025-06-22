@@ -14,10 +14,11 @@
 
   <link rel="preconnect" href="https://cdnjs.cloudflare.com">
   <% if (is_post()){ %>
-    <% if (theme.code_block && theme.code_block.theme_toggle && theme.code_block.theme_toggle.enable && theme.code_block.theme_toggle.light_theme) { %>
-      <link id="highlight-theme" rel="stylesheet" href="<%- url_for('css/' + theme.code_block.theme_toggle.light_theme + '.css') %>">
+    <% if (theme.code_block && theme.code_block.theme_toggle && theme.code_block.theme_toggle.enable) { %>
+      <%- css(theme.code_block.theme_toggle.light_theme) %>
+      <%- css(theme.code_block.theme_toggle.dark_theme) %>
     <% } else { %>
-      <link id="highlight-theme" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-light.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-light.css">
     <% } %>
     <script src="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/highlight.min.js"></script>
   <% } %>

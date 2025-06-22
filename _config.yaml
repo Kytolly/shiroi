@@ -30,5 +30,5 @@ code_block:
     enable: true
     to_light_button: icon/light-codeblock.svg
     to_dark_button: icon/dark-codeblock.svg
-    light_theme: vscode-modern-light  # must be a .css file in source/css/
-    dark_theme: vscode-modern-dark   # must be a .css file in source/css/
+    light_theme: css/vscode-modern-light.css
+    dark_theme: css/vscode-modern-dark.css

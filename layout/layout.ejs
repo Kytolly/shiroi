@@ -27,10 +27,24 @@
   <!-- Code Block Feature Config -->
   <% if (theme.code_block) { %>
     <script>
-      window.THEME_CONFIG.code_block = {
-        copy_button: "<%- theme.code_block.copy_button || '' %>",
-        theme_toggle: <%- JSON.stringify(theme.code_block.theme_toggle || {}) %>
-      };
+      window.THEME_CONFIG.code_block = window.THEME_CONFIG.code_block || {};
+      window.THEME_CONFIG.code_block.copy_button = "<%- theme.code_block.copy_button || '' %>";
+      
+      <% if (theme.code_block.theme_toggle && theme.code_block.theme_toggle.enable) { %>
+        <%
+          const light_theme_name = theme.code_block.theme_toggle.light_theme;
+          const dark_theme_name = theme.code_block.theme_toggle.dark_theme;
+          const light_theme_url = light_theme_name.startsWith('http') ? light_theme_name : url_for('css/' + light_theme_name + '.css');
+          const dark_theme_url = dark_theme_name.startsWith('http') ? dark_theme_name : url_for('css/' + dark_theme_name + '.css');
+        %>
+        window.THEME_CONFIG.code_block.theme_toggle = {
+          enable: true,
+          to_light_button: "<%- theme.code_block.theme_toggle.to_light_button %>",
+          to_dark_button: "<%- theme.code_block.theme_toggle.to_dark_button %>",
+          light_theme_url: "<%- light_theme_url %>",
+          dark_theme_url: "<%- dark_theme_url %>"
+        };
+      <% } %>
     </script>
   <% } %>
 
@@ -39,9 +53,6 @@
     <%- js('js/image-handler.js') %>
   <% } %>
   <%- js('js/highlight.js') %>
-  <% if (theme.code_block && theme.code_block.theme_toggle && theme.code_block.theme_toggle.enable) { %>
-    <%- js('js/codeblock-theme-toggle.js') %>
-  <% } %>
   <%- js('js/theme.js') %>
 </body>
 

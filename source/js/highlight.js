@@ -1,15 +1,19 @@
 hljs.highlightAll()
 
 document.addEventListener('DOMContentLoaded', () => {
-  // Find all code blocks
   const codeBlocks = document.querySelectorAll('figure.highlight');
-  const copyButtonConfig = window.THEME_CONFIG.code_block && window.THEME_CONFIG.code_block.copy_button;
+  const codeBlockConfig = window.THEME_CONFIG.code_block || {};
+  const copyButtonConfig = codeBlockConfig.copy_button;
+  const themeToggleConfig = codeBlockConfig.theme_toggle;
 
   codeBlocks.forEach(codeBlock => {
-    // If a header already exists, don't add another one.
+    // Prevent duplicate headers
     if (codeBlock.querySelector('.code-block-header')) {
       return;
     }
+    
+    // Set default theme
+    codeBlock.classList.add('theme-light');
 
     // Add .hljs class to table to prevent three-line-table style
     const table = codeBlock.querySelector('table');
@@ -17,11 +21,10 @@ document.addEventListener('DOMContentLoaded', () => {
       table.classList.add('hljs');
     }
 
-    // Create the header container
+    // --- Create Header & Actions ---
     const header = document.createElement('div');
     header.className = 'code-block-header';
 
-    // Extract language name and create the element
     const lang = Array.from(codeBlock.classList).find(cls => cls !== 'highlight') || 'code';
     const langName = document.createElement('span');
     langName.className = 'code-lang-name';
@@ -31,28 +34,66 @@ document.addEventListener('DOMContentLoaded', () => {
     const actionsContainer = document.createElement('div');
     actionsContainer.className = 'code-block-actions';
 
-    // Copy Button Logic
+    // --- Theme Toggler Logic ---
+    if (themeToggleConfig && themeToggleConfig.enable) {
+      const { to_light_button, to_dark_button } = themeToggleConfig;
+      
+      const themeToggleContainer = document.createElement('div');
+      themeToggleContainer.className = 'theme-toggle-container';
+
+      const lightButton = document.createElement('button');
+      lightButton.className = 'theme-toggle-btn light-btn';
+      lightButton.innerHTML = (to_light_button) ? `<img src="/${to_light_button}" alt="Light" class="no-process">` : 'Light';
+      lightButton.style.display = 'none';
+
+      const darkButton = document.createElement('button');
+      darkButton.className = 'theme-toggle-btn dark-btn';
+      darkButton.innerHTML = (to_dark_button) ? `<img src="/${to_dark_button}" alt="Dark" class="no-process">` : 'Dark';
+
+      darkButton.addEventListener('click', () => {
+        const figure = darkButton.closest('figure.highlight');
+        if (figure) {
+          figure.classList.remove('theme-light');
+          figure.classList.add('theme-dark');
+        }
+        darkButton.style.display = 'none';
+        lightButton.style.display = 'inline-block';
+      });
+
+      lightButton.addEventListener('click', () => {
+        const figure = lightButton.closest('figure.highlight');
+        if (figure) {
+          figure.classList.remove('theme-dark');
+          figure.classList.add('theme-light');
+        }
+        lightButton.style.display = 'none';
+        darkButton.style.display = 'inline-block';
+      });
+      
+      themeToggleContainer.appendChild(lightButton);
+      themeToggleContainer.appendChild(darkButton);
+      actionsContainer.appendChild(themeToggleContainer);
+    }
+
+    // --- Copy Button Logic ---
     if (copyButtonConfig) {
       const container = document.createElement('div');
       container.className = 'copy-btn-container';
+
       const copyButton = document.createElement('button');
       copyButton.className = 'copy-btn';
+
       let originalContent;
 
-      if (copyButtonConfig !== 'undefined') {
+      if (copyButtonConfig && copyButtonConfig !== 'undefined') {
         const icon = document.createElement('img');
         icon.src = '/' + copyButtonConfig;
-        icon.alt = 'Copy';
-        icon.classList.add('no-process');
         copyButton.appendChild(icon);
         originalContent = icon.outerHTML;
       } else {
         copyButton.innerText = 'copy';
         originalContent = 'copy';
       }
-      
-      container.appendChild(copyButton);
-      actionsContainer.appendChild(container);
 
       copyButton.addEventListener('click', () => {
         const codeToCopy = codeBlock.querySelector('.code').innerText;
@@ -61,10 +102,15 @@ document.addEventListener('DOMContentLoaded', () => {
           setTimeout(() => {
             copyButton.innerHTML = originalContent;
           }, 3000);
-        }).catch(err => console.error('Failed to copy text: ', err));
+        }).catch(err => {
+          console.error('Failed to copy text: ', err);
+        });
       });
+
+      container.appendChild(copyButton);
+      actionsContainer.appendChild(container);
     }
-    
+
     header.appendChild(actionsContainer);
     codeBlock.prepend(header);
   });

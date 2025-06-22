@@ -13,32 +13,35 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (!content) return;
 
-  const images = content.querySelectorAll('img');
+  const images = content.querySelectorAll('img:not(.no-process)');
 
   images.forEach(img => {
-    if (caption && img.alt) {
-      imageCounter++;
-      const figure = document.createElement('figure');
-      figure.classList.add('image-figure');
-      const figcaption = document.createElement('figcaption');
-      
-      figcaption.innerText = `图 ${imageCounter}: ${img.alt}`;
-      
-      const imgClone = img.cloneNode(true);
-      figure.appendChild(imgClone);
-      figure.appendChild(figcaption);
-      
-      // If image is inside a p tag, replace the p tag with figure.
-      // Otherwise, replace the image itself.
-      const parent = img.parentNode;
-      if (parent.tagName === 'P') {
-        parent.parentNode.replaceChild(figure, parent);
-      } else {
-        parent.replaceChild(figure, img);
-      }
+    const parent = img.parentNode;
 
-    } else if (center) {
-      img.classList.add('centered');
+    // Only apply logic to images that are the sole content of a paragraph,
+    // or to images that have an alt tag for a caption.
+    if (parent.tagName === 'P' && parent.textContent.trim() === '' || (caption && img.alt)) {
+      
+      if (caption && img.alt) {
+        imageCounter++;
+        const figure = document.createElement('figure');
+        figure.classList.add('image-figure');
+        
+        const figcaption = document.createElement('figcaption');
+        figcaption.innerText = `图 ${imageCounter}: ${img.alt}`;
+        
+        // The image is moved into the new figure, not cloned.
+        figure.appendChild(img);
+        figure.appendChild(figcaption);
+        
+        // Replace the parent <p> tag with the new <figure>
+        parent.parentNode.replaceChild(figure, parent);
+
+      } else if (center) {
+        // For images in a <p> tag without a caption, center the <p> tag itself
+        // or add a class to the image, but replacing the P is cleaner.
+        parent.style.textAlign = 'center';
+      }
     }
   });
 }); 

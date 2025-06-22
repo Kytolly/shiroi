@@ -9,18 +9,33 @@
   </main>
   <%- partial('_partial/footer') %>
 
+  <script>
+    // Initialize a global config object for theme features
+    const THEME_CONFIG = {};
+  </script>
+
   <!-- 图片样式 -->
   <% if (theme.image && theme.image.enable) { %>
     <script>
-      const THEME_CONFIG = {
-        image: {
-          center: <%- theme.image.center || false %>,
-          caption: <%- theme.image.caption || false %>
-        }
+      THEME_CONFIG.image = {
+        // eslint-disable-next-line
+        center: <%- theme.image.center || false %>,
+        // eslint-disable-next-line
+        caption: <%- theme.image.caption || false %>
       };
     </script>
     <%- js('js/image-handler.js') %>
   <% } %>
+
+  <!-- Codeblock Theme Toggler -->
+  <% if (theme.code_block && theme.code_block.theme_toggle && theme.code_block.theme_toggle.enable) { %>
+    <script>
+      const SHIROI_THEME_TOGGLE_CONFIG = <%- JSON.stringify(theme.code_block.theme_toggle || {}) %>;
+    </script>
+    <%- js('js/codeblock-theme-toggle.js') %>
+  <% } %>
+
+  <%- js('js/highlight.js') %>
 
   <%- js('js/theme.js') %>
 </body>

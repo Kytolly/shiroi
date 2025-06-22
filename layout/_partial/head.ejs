@@ -5,9 +5,14 @@
     <% if (page.title){ %>
     <%= page.title %> 丨
     <% } %>
-
     <%= theme.title || config.title %>
   </title>
+
+  <script>
+    const SHIROI_CONFIG = {
+      copy_button: "<%- theme.code_block.copy_button %>"
+    }
+  </script>
 
   <% if (theme.favicon){ %>
   <%- favicon_tag(theme.favicon) %>
@@ -15,8 +20,12 @@
 
   <link rel="preconnect" href="https://cdnjs.cloudflare.com">
   <% if (is_post()){ %>
-  <link id="theme" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-light.css">
-  <script src="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/highlight.min.js"></script>
+    <% if (theme.code_block && theme.code_block.theme_toggle && theme.code_block.theme_toggle.enable && theme.code_block.theme_toggle.light_theme) { %>
+      <link id="highlight-theme" rel="stylesheet" href="<%- url_for('css/' + theme.code_block.theme_toggle.light_theme + '.css') %>">
+    <% } else { %>
+      <link id="highlight-theme" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-light.css">
+    <% } %>
+    <script src="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/highlight.min.js"></script>
   <% } %>
 
   <!-- 字体 -->
@@ -35,7 +44,7 @@
     };
     </script>
     <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <% } %>
+  <% } %>
   
   <!-- 图片样式 -->
   <% if (theme.image && theme.image.enable) { %>
@@ -46,10 +55,33 @@
   <%- css('css/style.css') %>
   <%- css('css/post.css') %>
 
+  <!-- 三线表样式 -->
+  <% if (theme.three_line_table) { %>
+    <%- css('css/three-line-table.css') %>
+  <% } %>
+
   <!-- 标题编号 -->
   <% if (theme.heading_numbering || config.heading_numbering) { %>
     <%- css('css/heading-numbering.css') %>
     <%- js('js/heading-numbering.js') %>
   <% } %>
 
+  <!-- 代码块基础样式 -->
+  <%- css('css/code-block-base.css') %>
+
+  <!-- Codeblock Theme Toggler CSS -->
+  <% if (theme.code_block && theme.code_block.theme_toggle && theme.code_block.theme_toggle.enable) { %>
+  <%- css('css/codeblock-theme-toggle.css') %>
+  <% } %>
 </head>
+
+<body>
+  <!-- Codeblock Theme Toggler -->
+  <% if (theme.code_block && theme.code_block.theme_toggle && theme.code_block.theme_toggle.enable) { %>
+    <script>
+      const SHIROI_THEME_TOGGLE_CONFIG = <%- JSON.stringify(theme.code_block.theme_toggle || {}) %>;
+    </script>
+    <%- js('js/codeblock-theme-toggle.js') %>
+  <% } %>
+</body>
+</html>

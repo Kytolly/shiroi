@@ -1,0 +1,92 @@
+/*
+  Shiroi Code Block Styling - FINAL
+  - A clean, headered code block
+  - Language display and copy button
+  - Only two separator lines: one under the header, one between line numbers and code.
+  - Fix for rounded corners and persistent borders.
+*/
+
+/* Main container: no border/shadow, just a rounded shape with a background */
+figure.highlight {
+  border-radius: 8px;
+  margin: 1.5em 0;
+  overflow: hidden;
+  background-color: #f7f7f7; /* Provides a base for the rounded shape */
+}
+
+/* Header for language name and copy button */
+.code-block-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5em 1em;
+  background-color: #f7f7f7;
+  border-bottom: 1px solid #eee; /* Horizontal separator */
+}
+
+.code-lang-name {
+  font-size: 0.9em;
+  color: #555;
+  text-transform: capitalize;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+/* Copy button styling */
+.copy-btn-container .copy-btn {
+  border: none;
+  cursor: pointer;
+  background-color: transparent;
+  opacity: 0.6;
+}
+
+.copy-btn-container .copy-btn:hover {
+  opacity: 1;
+}
+
+.copy-btn-container .copy-btn img {
+  width: 16px;
+  height: 16px;
+  vertical-align: middle;
+}
+
+/* --- OVERRIDES FOR CONFLICTING GLOBAL STYLES --- */
+
+/* This is the container for the code proper */
+figure.highlight table.hljs {
+  background-color: white;
+  width: 100%;
+  margin: 0;
+  border-spacing: 0;
+  /* Apply border-radius to the table itself to fix corner clipping */
+  border-radius: 0 0 8px 8px;
+}
+
+/* Nuke all borders on table cells from other stylesheets with high specificity */
+.post-content figure.highlight table.hljs td {
+  border: none !important;
+  padding: 0 !important; /* Reset padding before applying it below */
+}
+
+/* Apply padding and the vertical separator ONLY where intended */
+.post-content figure.highlight table.hljs .gutter {
+  padding: 1em !important;
+  border-right: 1px solid #eee !important; /* The one true vertical line */
+}
+
+.post-content figure.highlight table.hljs .code {
+  padding: 1em !important;
+}
+
+/* Previous styles being replaced */
+/*
+pre {
+  position: relative;
+}
+
+.copy-btn-container {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 1;
+}
+*/ 

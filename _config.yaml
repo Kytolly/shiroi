@@ -15,3 +15,20 @@ image:
   enable: true  # Master switch
   center: true  # Center images
   caption: true # Display alt text as caption with numbering
+
+# Table style for markdown data tables
+three_line_table: true
+
+# codeblock
+code_block:
+  style: default
+  copy_button: icon/copy.svg
+  
+  # Theme toggling for code blocks
+  # Requires `light_theme` and `dark_theme` to be enabled.
+  theme_toggle:
+    enable: true
+    to_light_button: icon/light-codeblock.svg
+    to_dark_button: icon/dark-codeblock.svg
+    light_theme: vscode-modern-light  # must be a .css file in source/css/
+    dark_theme: vscode-modern-dark   # must be a .css file in source/css/

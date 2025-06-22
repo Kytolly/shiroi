@@ -11,32 +11,37 @@
 
   <script>
     // Initialize a global config object for theme features
-    const THEME_CONFIG = {};
+    window.THEME_CONFIG = {};
   </script>
 
-  <!-- 图片样式 -->
+  <!-- Image Feature Config -->
   <% if (theme.image && theme.image.enable) { %>
     <script>
-      THEME_CONFIG.image = {
-        // eslint-disable-next-line
+      window.THEME_CONFIG.image = {
         center: <%- theme.image.center || false %>,
-        // eslint-disable-next-line
         caption: <%- theme.image.caption || false %>
       };
     </script>
+  <% } %>
+
+  <!-- Code Block Feature Config -->
+  <% if (theme.code_block) { %>
+    <script>
+      window.THEME_CONFIG.code_block = {
+        copy_button: "<%- theme.code_block.copy_button || '' %>",
+        theme_toggle: <%- JSON.stringify(theme.code_block.theme_toggle || {}) %>
+      };
+    </script>
+  <% } %>
+
+  <!-- Feature Scripts -->
+  <% if (theme.image && theme.image.enable) { %>
     <%- js('js/image-handler.js') %>
   <% } %>
-
-  <!-- Codeblock Theme Toggler -->
+  <%- js('js/highlight.js') %>
   <% if (theme.code_block && theme.code_block.theme_toggle && theme.code_block.theme_toggle.enable) { %>
-    <script>
-      const SHIROI_THEME_TOGGLE_CONFIG = <%- JSON.stringify(theme.code_block.theme_toggle || {}) %>;
-    </script>
     <%- js('js/codeblock-theme-toggle.js') %>
   <% } %>
-
-  <%- js('js/highlight.js') %>
-
   <%- js('js/theme.js') %>
 </body>
 

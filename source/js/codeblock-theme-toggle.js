@@ -1,12 +1,13 @@
 // themes/shiroi/source/js/codeblock-theme-toggle.js
 
 document.addEventListener('DOMContentLoaded', () => {
-  // 1. Check if the feature is enabled and if the necessary config is present.
-  if (typeof SHIROI_THEME_TOGGLE_CONFIG === 'undefined' || !SHIROI_THEME_TOGGLE_CONFIG.enable) {
+  const themeToggleConfig = window.THEME_CONFIG.code_block && window.THEME_CONFIG.code_block.theme_toggle;
+
+  if (!themeToggleConfig || !themeToggleConfig.enable) {
     return;
   }
 
-  const { to_light_button, to_dark_button, light_theme, dark_theme } = SHIROI_THEME_TOGGLE_CONFIG;
+  const { to_light_button, to_dark_button, light_theme, dark_theme } = themeToggleConfig;
   const highlightThemeLink = document.getElementById('highlight-theme');
 
   if (!highlightThemeLink) {

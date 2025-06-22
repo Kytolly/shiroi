@@ -513,4 +513,19 @@ figure.highlight table.hljs {
 
 至此，代码块升级工作全部完成。
 
-### 代码块深浅主题样式
+### 代码块昼夜切换主题样式
+在`code_block:`中添加子选项
+```yml
+  theme_toggle:
+    enable: true
+    to_light_button: icon/light-codeblock.svg
+    to_dark_button: icon/dark-codeblock.svg
+    light_theme: vscode-modern-light  
+    dark_theme: vscode-modern-dark   
+```
+我的设计是将点击代码块右上方的昼夜切换按钮，可以实现代码块内部的深浅主题切换。
+* 当按钮是`to_light_button`，切换至浅色主题。
+* 当按钮是`to_dark_button`，切换至深色主题。
+代码块内部的主题由  `light_theme dark_theme`配置，
+* 它们可以是`source/css`中的`css`文件；
+* 也可以是指向`css`的 URL。

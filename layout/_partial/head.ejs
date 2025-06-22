@@ -8,12 +8,6 @@
     <%= theme.title || config.title %>
   </title>
 
-  <script>
-    const SHIROI_CONFIG = {
-      copy_button: "<%- theme.code_block.copy_button %>"
-    }
-  </script>
-
   <% if (theme.favicon){ %>
   <%- favicon_tag(theme.favicon) %>
   <% } %>
@@ -74,14 +68,3 @@
   <%- css('css/codeblock-theme-toggle.css') %>
   <% } %>
 </head>
-
-<body>
-  <!-- Codeblock Theme Toggler -->
-  <% if (theme.code_block && theme.code_block.theme_toggle && theme.code_block.theme_toggle.enable) { %>
-    <script>
-      const SHIROI_THEME_TOGGLE_CONFIG = <%- JSON.stringify(theme.code_block.theme_toggle || {}) %>;
-    </script>
-    <%- js('js/codeblock-theme-toggle.js') %>
-  <% } %>
-</body>
-</html>

@@ -3,6 +3,7 @@ hljs.highlightAll()
 document.addEventListener('DOMContentLoaded', () => {
   // Find all code blocks
   const codeBlocks = document.querySelectorAll('figure.highlight');
+  const copyButtonConfig = window.THEME_CONFIG.code_block && window.THEME_CONFIG.code_block.copy_button;
 
   codeBlocks.forEach(codeBlock => {
     // If a header already exists, don't add another one.
@@ -31,7 +32,6 @@ document.addEventListener('DOMContentLoaded', () => {
     actionsContainer.className = 'code-block-actions';
 
     // Copy Button Logic
-    const copyButtonConfig = SHIROI_CONFIG.copy_button;
     if (copyButtonConfig) {
       const container = document.createElement('div');
       container.className = 'copy-btn-container';
@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       if (copyButtonConfig !== 'undefined') {
         const icon = document.createElement('img');
-        icon.src = `/${copyButtonConfig}`;
+        icon.src = '/' + copyButtonConfig;
         icon.alt = 'Copy';
         icon.classList.add('no-process');
         copyButton.appendChild(icon);

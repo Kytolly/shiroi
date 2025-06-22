@@ -26,7 +26,6 @@ image:
 
 # codeblock
 code_block:
-  style: default
   copy_button: icon/copy.svg
   
   # Theme toggling for code blocks
@@ -37,3 +36,6 @@ code_block:
     to_dark_button: icon/dark-codeblock.svg
     light_theme: css/vscode-modern-light.css
     dark_theme: css/vscode-modern-dark.css
+  mac_enhancier: 
+    enable: true
+    init_folded_status: true

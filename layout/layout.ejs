@@ -12,6 +12,12 @@
     data-code-block-theme-toggle-enable="<%= (theme.code_block.theme_toggle && theme.code_block.theme_toggle.enable) ? 'true' : 'false' %>"
     data-code-block-theme-toggle-to-light-button="<%= (theme.code_block.theme_toggle && theme.code_block.theme_toggle.to_light_button) || '' %>"
     data-code-block-theme-toggle-to-dark-button="<%= (theme.code_block.theme_toggle && theme.code_block.theme_toggle.to_dark_button) || '' %>"
+    data-code-block-mac-enhancer="<%= (theme.code_block.mac_enhancier && theme.code_block.mac_enhancier.enable) ? 'true' : 'false' %>"
+    <% if (theme.code_block.mac_enhancier && theme.code_block.mac_enhancier.enable) { %>
+    data-code-block-mac-enhancer-init-folded-status="<%= (theme.code_block.mac_enhancier.init_folded_status) ? 'true' : 'false' %>"
+    <% } else { %>
+    data-code-block-mac-enhancer-init-folded-status="false"
+    <% } %>
   <% } %>
 >
   <%- partial('_partial/header') %>

@@ -2,7 +2,12 @@
 <html>
 <%- partial('_partial/head') %>
 
-<body>
+<body
+  <% if (theme.image && theme.image.enable) { %>
+    data-image-center="<%= theme.image.center ? 'true' : 'false' %>"
+    data-image-caption="<%= theme.image.caption ? 'true' : 'false' %>"
+  <% } %>
+>
   <%- partial('_partial/header') %>
   <main class="main">
     <%- body %>
@@ -13,16 +18,6 @@
     // Initialize a global config object for theme features
     window.THEME_CONFIG = {};
   </script>
-
-  <!-- Image Feature Config -->
-  <% if (theme.image && theme.image.enable) { %>
-    <script>
-      window.THEME_CONFIG.image = {
-        center: <%- theme.image.center || false %>,
-        caption: <%- theme.image.caption || false %>
-      };
-    </script>
-  <% } %>
 
   <!-- Code Block Feature Config -->
   <% if (theme.code_block) { %>
@@ -48,10 +43,6 @@
     </script>
   <% } %>
 
-  <!-- Feature Scripts -->
-  <% if (theme.image && theme.image.enable) { %>
-    <%- js('js/image-handler.js') %>
-  <% } %>
   <%- js('js/highlight.js') %>
   <%- js('js/theme.js') %>
 </body>

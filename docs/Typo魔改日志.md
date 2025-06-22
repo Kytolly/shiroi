@@ -529,3 +529,177 @@ figure.highlight table.hljs {
 代码块内部的主题由  `light_theme dark_theme`配置，
 * 它们可以是`source/css`中的`css`文件；
 * 也可以是指向`css`的 URL。
+
+为了实现一个健壮、高效且易于维护的代码块主题切换功能，我们采用了基于CSS变量和类名切换的现代前端方案。此方案将代码块的结构样式与颜色主题完全解耦，解决了样式覆盖和路径错误等一系列问题。
+
+#### 1. 最终架构
+
+- **核心思想**：基础布局（如背景、边框）的颜色由一组CSS变量控制，这些变量在 `code-block-base.css` 中定义并拥有浅色主题的默认值。切换主题时，JavaScript仅在代码块的根元素(`<figure>`)上添加一个 `.theme-dark` 类，这个类会激活一组新的CSS变量值，从而瞬间改变所有基础颜色。
+- **主题分离**：`vscode-modern-light.css` 和 `vscode-modern-dark.css` 文件被大幅简化，现在它们只负责定义对应主题下的**语法高亮文本颜色**，并且其规则分别被 `.theme-light` 和 `.theme-dark` 类所限定。
+- **统一脚本**：所有DOM操作，包括创建标题栏、语言名称、主题切换按钮和复制按钮的逻辑，全部被整合到 `highlight.js` 脚本中，确保了正确的执行顺序，避免了时序冲突和元素重复创建。
+
+#### 2. 配置文件 (`_config.shiroi.yml`)
+
+配置保持不变，用于启用功能、定义按钮图标和主题名称。
+
+```yaml
+# Code block settings
+code_block:
+  copy_button: icon/copy.svg
+  theme_toggle:
+    enable: true
+    to_light_button: icon/light-codeblock.svg
+    to_dark_button: icon/dark-codeblock.svg
+    light_theme: css/vscode-modern-light.css 
+    dark_theme: css/vscode-modern-dark.css
+```
+
+#### 3. 布局与脚本注入 (`layout.ejs` & `head.ejs`)
+
+- **加载所有主题**: 为了让类名切换能即时生效，我们在 `layout/_partial/head.ejs` 中**同时加载**浅色和深色两个主题的CSS文件。
+
+  ```ejs
+  <!-- themes/shiroi/layout/_partial/head.ejs -->
+  <% if (is_post()){ %>
+    <% if (theme.code_block && theme.code_block.theme_toggle && theme.code_block.theme_toggle.enable) { %>
+      <%- css(theme.code_block.theme_toggle.light_theme) %>
+      <%- css(theme.code_block.theme_toggle.dark_theme) %>
+    <% } else { %>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-light.css">
+    <% } %>
+    <script src="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/highlight.min.js"></script>
+  <% } %>
+  ```
+
+- **注入完整配置**: 我们在主布局文件 `layout/layout.ejs` 中，使用 Hexo 的 `url_for` 辅助函数生成CSS的完整路径，并将所有配置注入到全局的 `window.THEME_CONFIG` 对象中，确保了路径的准确性。
+
+#### 4. 核心样式 (`code-block-base.css`)
+
+此文件被重构为使用CSS变量。它定义了浅色主题的默认颜色，并包含一个 `.theme-dark` 类用于覆盖这些变量以实现深色主题。
+
+```css
+/* themes/shiroi/source/css/code-block-base.css */
+figure.highlight {
+  --code-bg: #f7f7f7;
+  --header-bg: #f7f7f7;
+  --table-bg: white;
+  --gutter-bg: #f7f7f7;
+  --border-color: #eee;
+  --lang-name-color: #555;
+  /* ...其他样式... */
+  background-color: var(--code-bg);
+}
+
+figure.highlight.theme-dark {
+  --code-bg: #282c34;
+  --header-bg: #21252b;
+  --table-bg: #282c34;
+  --gutter-bg: #21252b;
+  --border-color: #3a4049;
+  --lang-name-color: #abb2bf;
+}
+/* ...其他使用var()的规则... */
+```
+
+#### 5. 主题样式 (`vscode-modern-dark.css` & `vscode-modern-light.css`)
+
+这两个文件现在只包含被 `.theme-dark` 或 `.theme-light` 限定的文本颜色规则。
+
+```css
+/* themes/shiroi/source/css/vscode-modern-dark.css */
+figure.highlight.theme-dark .hljs {
+  color: #abb2bf;
+}
+figure.highlight.theme-dark .hljs-keyword {
+  color: #c678dd;
+}
+/* ... more text color rules ... */
+```
+
+#### 6. 统一脚本 (`highlight.js`)
+
+这是所有魔法发生的地方。它在页面加载后执行以下操作：
+1. 遍历所有代码块。
+2. 检查并防止重复创建标题栏。
+3. 为每个代码块默认添加 `.theme-light` 类。
+4. 动态创建完整的标题栏，包括语言名称、主题切换器和复制按钮。
+5. 为按钮绑定事件监听器。点击时，脚本只做一件事：在 `<figure>` 元素上**切换 `.theme-light` 和 `.theme-dark` 类**。
+
+```js
+// themes/shiroi/source/js/highlight.js
+
+// ...
+  codeBlocks.forEach(codeBlock => {
+    // Prevent duplicate headers
+    if (codeBlock.querySelector('.code-block-header')) return;
+    
+    // Set default theme
+    codeBlock.classList.add('theme-light');
+
+    // ... 逻辑：创建header, langName, actionsContainer ...
+
+    // --- Theme Toggler Logic ---
+    if (themeToggleConfig && themeToggleConfig.enable) {
+      // ... 逻辑：创建lightButton, darkButton ...
+
+      darkButton.addEventListener('click', () => {
+        const figure = darkButton.closest('figure.highlight');
+        if (figure) {
+          figure.classList.remove('theme-light');
+          figure.classList.add('theme-dark');
+        }
+        darkButton.style.display = 'none';
+        lightButton.style.display = 'inline-block';
+      });
+
+      lightButton.addEventListener('click', () => {
+        const figure = lightButton.closest('figure.highlight');
+        if (figure) {
+          figure.classList.remove('theme-dark');
+          figure.classList.add('theme-light');
+        }
+        lightButton.style.display = 'none';
+        darkButton.style.display = 'inline-block';
+      });
+      
+      // ... 逻辑：将按钮添加到actionsContainer ...
+    }
+
+    // ... 复制按钮的逻辑 ...
+  });
+// ...
+```
+至此，整个功能改造完成，系统稳定、高效且易于维护。
+
+### 最终调试：解决根源上的类名不匹配问题
+
+在完成上述重构后，我们发现语法高亮依然没有生效。经过对Hexo配置和渲染器输出的深入联合调试，我们定位到了问题的真正根源：
+
+**根源**：Hexo的 `_config.yml` 文件中存在一个关键的全局配置：
+```yaml
+highlight:
+  hljs: false # 这个设置是所有问题的根源
+```
+这个 `hljs: false` 选项，是在指示Hexo内置的高亮器在生成HTML时，**不要**为高亮的元素添加标准的 `hljs-` 前缀。这就导致了渲染器输出的是 `.keyword`, `.string` 这样的类名，而我们之前编写的所有CSS规则寻找的都是 `.hljs-keyword`, `.hljs-string`，因此无一命中。
+
+当我们尝试将此选项设为 `true` 时，虽然类名正确了，但却触发了Hexo高亮器的另一个Bug，导致所有代码被错误地压缩到一行。
+
+**最终解决方案**：
+我们决定采用最稳妥的策略——**保持HTML结构的正确性，让CSS去适应HTML**。
+
+1.  **恢复配置**: 我们将 `_config.yml` 中的 `hljs` 选项保持为 `false`，确保代码块能正确地渲染为多行。
+2.  **改造主题CSS**: 我们对 `vscode-modern-light.css` 和 `vscode-modern-dark.css` 进行了最后的"去前缀"改造。我们将其中所有的 `.hljs-` 前缀全部移除，并修正了基础文本颜色的选择器。
+
+例如，在 `vscode-modern-dark.css` 中：
+```css
+/* 修改前 */
+.post-content figure.highlight.theme-dark .code .hljs-keyword {
+  color: #c678dd;
+}
+
+/* 修改后 */
+.post-content figure.highlight.theme-dark .code .keyword {
+  color: #c678dd;
+}
+```
+通过这次修改，CSS规则最终与渲染器输出的HTML完全匹配，语法高亮功能也得以完美实现。整个主题切换功能至此才算真正大功告成。

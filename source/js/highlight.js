@@ -1,6 +1,8 @@
-hljs.highlightAll()
-
 document.addEventListener('DOMContentLoaded', () => {
+  // 1. 先等页面加载完，然后执行语法高亮
+  hljs.highlightAll();
+
+  // 2. 接着，执行我们自己的逻辑，为已高亮的代码块添加标题栏和按钮
   const codeBlocks = document.querySelectorAll('figure.highlight');
   const codeBlockConfig = window.THEME_CONFIG.code_block || {};
   const copyButtonConfig = codeBlockConfig.copy_button;

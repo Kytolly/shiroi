@@ -11,60 +11,62 @@ Website:    https://github.com/highlightjs/highlight.js/pull/3533
   - This file now ONLY defines the text colors for syntax highlighting.
   - All background, border, and structural colors are handled by CSS variables 
     in `code-block-base.css`.
+  - Specificity is increased by using a more detailed selector to win CSS priority wars.
+  - The `hljs-` prefix is removed to match the output of Hexo's highlighter when `hljs: false`.
 */
 
-figure.highlight.theme-light .hljs {
+.post-content figure.highlight.theme-light .code {
   color: #383a42; /* Default text color */
 }
 
-figure.highlight.theme-light .hljs-comment {
+.post-content figure.highlight.theme-light .code .comment {
   color: #a0a1a7;
   font-style: italic;
 }
 
-figure.highlight.theme-light .hljs-keyword,
-figure.highlight.theme-light .hljs-name,
-figure.highlight.theme-light .hljs-selector-tag,
-figure.highlight.theme-light .hljs-meta-keyword {
+.post-content figure.highlight.theme-light .code .keyword,
+.post-content figure.highlight.theme-light .code .name,
+.post-content figure.highlight.theme-light .code .selector-tag,
+.post-content figure.highlight.theme-light .code .meta-keyword {
   color: #a626a4;
 }
 
-figure.highlight.theme-light .hljs-number,
-figure.highlight.theme-light .hljs-literal {
+.post-content figure.highlight.theme-light .code .number,
+.post-content figure.highlight.theme-light .code .literal {
   color: #d19a66;
 }
 
-figure.highlight.theme-light .hljs-string,
-figure.highlight.theme-light .hljs-regexp {
+.post-content figure.highlight.theme-light .code .string,
+.post-content figure.highlight.theme-light .code .regexp {
   color: #50a14f;
 }
 
-figure.highlight.theme-light .hljs-title,
-figure.highlight.theme-light .hljs-variable,
-figure.highlight.theme-light .hljs-template-variable,
-figure.highlight.theme-light .hljs-function {
+.post-content figure.highlight.theme-light .code .title,
+.post-content figure.highlight.theme-light .code .variable,
+.post-content figure.highlight.theme-light .code .template-variable,
+.post-content figure.highlight.theme-light .code .function {
   color: #4078f2;
 }
 
-figure.highlight.theme-light .hljs-type,
-figure.highlight.theme-light .hljs-built_in {
+.post-content figure.highlight.theme-light .code .type,
+.post-content figure.highlight.theme-light .code .built_in {
   color: #c18401;
 }
 
-figure.highlight.theme-light .hljs-symbol,
-figure.highlight.theme-light .hljs-bullet {
+.post-content figure.highlight.theme-light .code .symbol,
+.post-content figure.highlight.theme-light .code .bullet {
   color: #4078f2;
 }
 
-figure.highlight.theme-light .hljs-section,
-figure.highlight.theme-light .hljs-meta {
+.post-content figure.highlight.theme-light .code .section,
+.post-content figure.highlight.theme-light .code .meta {
   color: #e45649;
 }
 
-figure.highlight.theme-light .hljs-emphasis {
+.post-content figure.highlight.theme-light .code .emphasis {
   font-style: italic;
 }
 
-figure.highlight.theme-light .hljs-strong {
+.post-content figure.highlight.theme-light .code .strong {
   font-weight: bold;
 } 

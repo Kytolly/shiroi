@@ -30,36 +30,30 @@
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet">
 
   <!-- 数学公式 -->
-  <% if (theme.mathjax || config.mathjax) { %>
-    <script>
-    window.MathJax = {
-      tex: {
-        inlineMath: [['$', '$'], ['\\(', '\\)']]
-      }
-    };
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-  <% } %>
+  <%- css('css/mathjax.css') %>
+  <%- js('js/mathjax-init.js') %>
   
-  <!-- 图片样式 -->
-  <% if (theme.image && theme.image.enable) { %>
-  <%- css('css/image-handler.css') %>
-  <% } %>
-  
-  <%- css('css/root.css') %>
-  <%- css('css/style.css') %>
-  <%- css('css/post.css') %>
-
-  <!-- 三线表样式 -->
-  <% if (theme.three_line_table) { %>
-    <%- css('css/three-line-table.css') %>
-  <% } %>
-
   <!-- 标题编号 -->
   <% if (theme.heading_numbering || config.heading_numbering) { %>
     <%- css('css/heading-numbering.css') %>
     <%- js('js/heading-numbering.js') %>
   <% } %>
+  
+  <!-- 三线表样式 -->
+  <% if (theme.three_line_table) { %>
+    <%- css('css/three-line-table.css') %>
+  <% } %>
+
+  <!-- 图片样式 -->
+  <% if (theme.image && theme.image.enable) { %>
+  <%- css('css/image-handler.css') %>
+  <% } %>
+  
+
+  
+  <%- css('css/root.css') %>
+  <%- css('css/style.css') %>
+  <%- css('css/post.css') %>
 
   <!-- 代码块基础样式 -->
   <%- css('css/code-block-base.css') %>

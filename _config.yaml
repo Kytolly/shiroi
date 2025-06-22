@@ -7,8 +7,15 @@ menu:
   about: /about
 
 copyright: Kytolly(shiroi)
+
+# mathjax support
 mathjax: true
+
+# heading numbering
 heading_numbering: true
+
+# Table style for markdown data tables
+three_line_table: true
 
 # Image settings
 image:
@@ -16,8 +23,6 @@ image:
   center: true  # Center images
   caption: true # Display alt text as caption with numbering
 
-# Table style for markdown data tables
-three_line_table: true
 
 # codeblock
 code_block:

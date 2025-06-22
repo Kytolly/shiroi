@@ -20,8 +20,8 @@
     <% } else { %>
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-light.css">
     <% } %>
-    <script src="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/highlight.min.js"></script>
   <% } %>
+  <script src="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/highlight.min.js"></script>
 
   <!-- 字体 -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -31,7 +31,7 @@
 
   <!-- 数学公式 -->
   <%- css('css/mathjax.css') %>
-  <%- js('js/mathjax-init.js') %>
+  <%- js('js/mathjax.js') %>
   
   <!-- 标题编号 -->
   <% if (theme.heading_numbering || config.heading_numbering) { %>

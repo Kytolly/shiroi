@@ -7,6 +7,12 @@
     data-image-center="<%= theme.image.center ? 'true' : 'false' %>"
     data-image-caption="<%= theme.image.caption ? 'true' : 'false' %>"
   <% } %>
+  <% if (theme.code_block) { %>
+    data-code-block-copy-button="<%= theme.code_block.copy_button || '' %>"
+    data-code-block-theme-toggle-enable="<%= (theme.code_block.theme_toggle && theme.code_block.theme_toggle.enable) ? 'true' : 'false' %>"
+    data-code-block-theme-toggle-to-light-button="<%= (theme.code_block.theme_toggle && theme.code_block.theme_toggle.to_light_button) || '' %>"
+    data-code-block-theme-toggle-to-dark-button="<%= (theme.code_block.theme_toggle && theme.code_block.theme_toggle.to_dark_button) || '' %>"
+  <% } %>
 >
   <%- partial('_partial/header') %>
   <main class="main">
@@ -20,30 +26,9 @@
   </script>
 
   <!-- Code Block Feature Config -->
-  <% if (theme.code_block) { %>
-    <script>
-      window.THEME_CONFIG.code_block = window.THEME_CONFIG.code_block || {};
-      window.THEME_CONFIG.code_block.copy_button = "<%- theme.code_block.copy_button || '' %>";
-      
-      <% if (theme.code_block.theme_toggle && theme.code_block.theme_toggle.enable) { %>
-        <%
-          const light_theme_name = theme.code_block.theme_toggle.light_theme;
-          const dark_theme_name = theme.code_block.theme_toggle.dark_theme;
-          const light_theme_url = light_theme_name.startsWith('http') ? light_theme_name : url_for('css/' + light_theme_name + '.css');
-          const dark_theme_url = dark_theme_name.startsWith('http') ? dark_theme_name : url_for('css/' + dark_theme_name + '.css');
-        %>
-        window.THEME_CONFIG.code_block.theme_toggle = {
-          enable: true,
-          to_light_button: "<%- theme.code_block.theme_toggle.to_light_button %>",
-          to_dark_button: "<%- theme.code_block.theme_toggle.to_dark_button %>",
-          light_theme_url: "<%- light_theme_url %>",
-          dark_theme_url: "<%- dark_theme_url %>"
-        };
-      <% } %>
-    </script>
-  <% } %>
+  <!-- Removed: Configuration now passed via data-attributes on body tag -->
 
-  <%- js('js/highlight.js') %>
+  <%- js('js/code-block.js') %>
   <%- js('js/theme.js') %>
 </body>
 

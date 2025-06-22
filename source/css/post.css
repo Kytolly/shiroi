@@ -405,6 +405,7 @@
   font-weight: 600;
 }
 
+/*
 .post-content table td,
 .post-content table th {
   border: 1px solid #6b6b6b;
@@ -414,6 +415,7 @@
 .post-content table tr {
   border-top: 1px solid #c6cbd1;
 }
+*/
 
 .post-content img {
   box-sizing: content-box;

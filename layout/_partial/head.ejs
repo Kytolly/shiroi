@@ -5,7 +5,6 @@
     <% if (page.title){ %>
     <%= page.title %> 丨
     <% } %>
-
     <%= theme.title || config.title %>
   </title>
 
@@ -15,9 +14,14 @@
 
   <link rel="preconnect" href="https://cdnjs.cloudflare.com">
   <% if (is_post()){ %>
-  <link id="theme" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-light.css">
-  <script src="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/highlight.min.js"></script>
+    <% if (theme.code_block && theme.code_block.theme_toggle && theme.code_block.theme_toggle.enable) { %>
+      <%- css(theme.code_block.theme_toggle.light_theme) %>
+      <%- css(theme.code_block.theme_toggle.dark_theme) %>
+    <% } else { %>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-light.css">
+    <% } %>
   <% } %>
+  <script src="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/highlight.min.js"></script>
 
   <!-- 字体 -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -26,25 +30,41 @@
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet">
 
   <!-- 数学公式 -->
-  <% if (theme.mathjax || config.mathjax) { %>
-    <script>
-    window.MathJax = {
-      tex: {
-        inlineMath: [['$', '$'], ['\\(', '\\)']]
-      }
-    };
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-  <% } %>
+  <%- css('css/mathjax.css') %>
+  <%- js('js/mathjax.js') %>
   
-  <%- css('css/root.css') %>
-  <%- css('css/style.css') %>
-  <%- css('css/post.css') %>
-
   <!-- 标题编号 -->
   <% if (theme.heading_numbering || config.heading_numbering) { %>
     <%- css('css/heading-numbering.css') %>
     <%- js('js/heading-numbering.js') %>
   <% } %>
+  
+  <!-- 三线表样式 -->
+  <% if (theme.three_line_table) { %>
+    <%- css('css/three-line-table.css') %>
+  <% } %>
 
+  <!-- 图片样式 -->
+  <% if (theme.image && theme.image.enable) { %>
+    <%- css('css/image-handler.css') %>
+    <%- js('js/image-handler.js') %>
+  <% } %>
+  
+
+  <%- css('css/root.css') %>
+  <%- css('css/style.css') %>
+  <%- css('css/post.css') %>
+
+  <!-- 代码块基础样式 -->
+  <%- css('css/code-block-base.css') %>
+
+  <!-- Codeblock Theme Toggler CSS -->
+  <% if (theme.code_block && theme.code_block.theme_toggle && theme.code_block.theme_toggle.enable) { %>
+  <%- css('css/codeblock-theme-toggle.css') %>
+  <% } %>
+
+  <!-- Codeblock Mac Enhancer CSS -->
+  <% if (theme.code_block && theme.code_block.mac_enhancier && theme.code_block.mac_enhancier.enable) { %>
+  <%- css('css/code-block-mac-enhancer.css') %>
+  <% } %>
 </head>

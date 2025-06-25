@@ -6,4 +6,36 @@ menu:
   archives: /archives
   about: /about
 
-copyright: 2024 typo
+copyright: Kytolly(shiroi)
+
+# mathjax support
+mathjax: true
+
+# heading numbering
+heading_numbering: true
+
+# Table style for markdown data tables
+three_line_table: true
+
+# Image settings
+image:
+  enable: true  # Master switch
+  center: true  # Center images
+  caption: true # Display alt text as caption with numbering
+
+
+# codeblock
+code_block:
+  copy_button: icon/copy.svg
+  
+  # Theme toggling for code blocks
+  # Requires `light_theme` and `dark_theme` to be enabled.
+  theme_toggle:
+    enable: true
+    to_light_button: icon/light-codeblock.svg
+    to_dark_button: icon/dark-codeblock.svg
+    light_theme: css/vscode-modern-light.css
+    dark_theme: css/vscode-modern-dark.css
+  mac_enhancier: 
+    enable: true
+    init_folded_status: true

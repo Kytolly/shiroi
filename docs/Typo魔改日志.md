@@ -1,4 +1,9 @@
 ## Typo 魔改日志
+
+本主题按照本人使用的 Typora 编辑器风格定制，旨在打造一款轻量级的`TeX`笔记样式。
+本主题改编自 [Typo](https://github.com/rankangkang/hexo-theme-typo)。
+
+
 ### 数学公式支持
 此时数学公式的渲染器为`hexo-renderer-marked`;
 在`layout/head.ejs`添加如下代码，以使得渲染器支持数学公式
@@ -114,3 +119,17 @@ ol {
   list-style: circle;
 }
 ```
+
+### 左侧目录
+
+### AI摘要
+
+### AI搜索
+
+### 背景
+
+### Tags归档
+
+### About
+
+### 右侧profile

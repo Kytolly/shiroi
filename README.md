@@ -17,21 +17,7 @@ theme: shiroi
 
 ## 🌈 Configuration
 
-### Code Highlighting
-
-Shiroi uses `highlight.js` to highlight code. 
-To do this, you need to disable the default highlight configuration beforehand.
-
-```yaml _config.yaml
-highlight:
-  line_number: false
-  auto_detect: false
-  tab_replace: ''
-  wrap: false
-  hljs: false
-```
-
-### Traits
+### Typo Traits
 
 Shiroi inherit base configuration and you can get reference in [Typo](https://github.com/rankangkang/hexo-theme-typo).
 

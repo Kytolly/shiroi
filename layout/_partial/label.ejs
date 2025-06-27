@@ -1,0 +1,8 @@
+<!-- 标签页 -->
+<title>
+    <%= page.title || config.title || theme.title  %>
+</title>
+
+<% if (theme.favicon){ %>
+<%- favicon_tag(theme.favicon) %>
+<% } %>

@@ -1,9 +1,20 @@
+<!--(头部 top bar) Header 样式 -->
+<%- css('css/header.css') %>
+
 <header class="header">
   <section class="header-container">
-    <a class="logo" href="<%- url_for() %>"><%= config.title %></a>
-    <ul class="nav">
-      <% for (name in theme.menu) { %>
-      <li><a href="<%- url_for(theme.menu[name]) %>"><%= name %></a></li>
+    <a class="header-logo" href="<%- url_for('icon.svg') %>"><%= config.title %></a>
+    <ul class="header-nav">
+      <%
+        for (const name in theme.menu) {
+          const iconName = name;
+      %>
+      <li>
+        <a href="<%- url_for(theme.menu[name]) %>">
+          <img src="<%- url_for('icon/' + iconName + '.svg') %>" alt="<%= name %> icon" style="width:1.2em;height:1.2em;vertical-align:middle;">
+          <%= name %>
+        </a>
+      </li>
       <% } %>
     </ul>
   </section>

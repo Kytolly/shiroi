@@ -26,7 +26,7 @@
 
   --color-hashtag: #51525d;
 
-  --main-width: 1080px;
+  --main-width: 900px;
 }
 
 @media (prefers-color-scheme: light) {
@@ -107,6 +107,9 @@ ul {
 
 html,
 body {
+  margin: 0;
+  padding: 0;
+  min-width: 100vw; /* 确保占据整个视口宽度 */
   scroll-behavior: smooth;
 }
 

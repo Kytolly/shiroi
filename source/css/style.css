@@ -9,99 +9,11 @@ body {
   background: var(--color-background);
 }
 
-.footer {
-  width: 100%;
-  max-width: var(--main-width);
-  margin: 0 auto;
-  padding: 72px 8vw 24px;
-  background: var(--color-background);
-  overflow-x: hidden;
-}
-
 .main {
   width: 100%;
   padding: 72px 0 24px;
   background: var(--color-background);
   overflow-x: hidden;
-}
-
-.header {
-  position: sticky;
-  top: -48px;
-  background: inherit;
-  margin: 0;
-  padding: 64px 8vw 0;
-  max-width: 100%;
-  width: 100%;
-}
-
-.header-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-bottom: 1px solid var(--color-hr);
-}
-/* .footer, .main {
-  width: 100%;
-  max-width: var(--main-width);
-  margin: 0 auto;
-  padding: 72px 8vw 24px;
-  background: var(--color-background);
-  overflow-x: hidden;
-}
-
-.header {
-  position: sticky;
-  top: -48px;
-  background: inherit;
-  margin: 0;
-  padding: 64px 8vw 0;
-  max-width: 100%;
-  width: 100%;
-}
-
-.header-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-bottom: 1px solid var(--color-hr);
-} */
-
-.logo {
-  font-size: 2rem;
-  font-weight: 600;
-  color: var(--font-color);
-  margin-bottom: 16px;
-}
-
-.nav {
-  margin: 0 0 4px;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-  align-content: center;
-}
-
-.nav li {
-  padding: 2px 0;
-  margin-right: 24px;
-}
-
-.nav li:last-of-type {
-  margin-right: 0;
-}
-
-.nav li a {
-  color: var(--font-color);
-  /* opacity: 0.9;
-  transition: opacity ease-in-out 0.5s; */
-}
-
-.nav li a:hover {
-  text-decoration: underline;
-  /* opacity: 1;
-  transition: opacity ease-in-out 0.5s; */
 }
 
 p {
@@ -194,20 +106,6 @@ a {
   margin-left: 0.5em;
 }
 
-.footer span {
-  text-align: center;
-  margin-bottom: 8px;
-}
-
-.footer a {
-  color: var(--font-color-extra);
-  transition: color ease-in-out 0.5s;
-}
-
-.footer a:hover {
-  color: var(--font-color);
-  transition: color ease-in-out 0.5s;
-}
 
 .archives {
   display: flex;
@@ -344,4 +242,11 @@ a {
 /* Ensure .post fills its wrapper and does not impose its own max-width/margins */
 .post {
   width: 100%;
+}
+
+/* New: Wrapper for general main content (e.g., homepage, archives) */
+.main-content-wrapper {
+  max-width: var(--main-width);
+  margin: 0 auto;
+  padding: 0 8vw; /* Matches header and footer horizontal padding */
 }

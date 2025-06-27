@@ -9,7 +9,39 @@ body {
   background: var(--color-background);
 }
 
-.footer, .main {
+.footer {
+  width: 100%;
+  max-width: var(--main-width);
+  margin: 0 auto;
+  padding: 72px 8vw 24px;
+  background: var(--color-background);
+  overflow-x: hidden;
+}
+
+.main {
+  width: 100%;
+  padding: 72px 0 24px;
+  background: var(--color-background);
+  overflow-x: hidden;
+}
+
+.header {
+  position: sticky;
+  top: -48px;
+  background: inherit;
+  margin: 0;
+  padding: 64px 8vw 0;
+  max-width: 100%;
+  width: 100%;
+}
+
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--color-hr);
+}
+/* .footer, .main {
   width: 100%;
   max-width: var(--main-width);
   margin: 0 auto;
@@ -33,7 +65,7 @@ body {
   justify-content: space-between;
   align-items: center;
   border-bottom: 1px solid var(--color-hr);
-}
+} */
 
 .logo {
   font-size: 2rem;
@@ -260,12 +292,56 @@ a {
 
 .paginator a:hover {
   color: var(--font-color);
-  border-bottom: 2px solid var(--color-active);
-  transition: all ease-in-out 0.5s;
+  border-bottom: 2px solid var(--font-color);
+  cursor: not-allowed;
 }
 
 .paginator .current {
   color: var(--font-color);
   border-bottom: 2px solid var(--font-color);
   cursor: not-allowed;
+}
+
+.post-layout-wrapper {
+  display: flex;
+  justify-content: center; /* Centers the content wrapper within the available space */
+  align-items: flex-start;
+  padding: 0 8vw; /* Matches the horizontal padding of the main content */
+}
+
+.post-content-wrapper {
+  flex-grow: 1;
+  max-width: var(--main-width); /* Keeps the article content centered and at a readable width */
+  margin: 0 auto; /* Ensures the content wrapper is centered if there's extra space */
+}
+
+.post {
+  width: 100%;
+  /* Removed max-width and margin: 0 auto; as post-content-wrapper handles centering and width */
+  /* max-width: var(--main-width); */
+  /* margin: 0 auto; */
+  /* Original padding for .post moved to .main */
+  /* padding: 72px 8vw 24px; */
+  /* background: var(--color-background); */
+  /* overflow-x: hidden; */
+}
+
+/* New: Grid layout for articles with TOC */
+.main-with-toc {
+  display: grid;
+  /* Columns: Left padding (8vw), TOC (200px), Gap (40px), Article content (flexible to main-width), Right padding (8vw) */
+  grid-template-columns: 8vw 200px 40px minmax(auto, var(--main-width)) 8vw;
+  gap: 0; /* Grid columns define gaps implicitly */
+  align-items: start; /* Align items to the top */
+}
+
+/* New: Wrapper for article content within the grid */
+.article-content-wrapper {
+  grid-column: 4; /* Place it in the 4th column of the grid */
+  /* Article content will be centered by its column definition and max-width */
+}
+
+/* Ensure .post fills its wrapper and does not impose its own max-width/margins */
+.post {
+  width: 100%;
 }

@@ -39,3 +39,8 @@ code_block:
   mac_enhancier: 
     enable: true
     init_folded_status: true
+
+# Table of Contents (TOC) settings
+toc:
+  enable: true
+  position: left # Options: left, right

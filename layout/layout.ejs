@@ -22,7 +22,16 @@
 >
   <%- partial('_partial/header') %>
   <main class="main">
-    <%- body %>
+    <% if (is_post() && theme.toc && theme.toc.enable && page.toc !== false) { %>
+      <div class="main-with-toc">
+        <%- partial('_partial/toc') %>
+        <div class="article-content-wrapper">
+          <%- body %>
+        </div>
+      </div>
+    <% } else { %>
+      <%- body %>
+    <% } %>
   </main>
   <%- partial('_partial/footer') %>
 

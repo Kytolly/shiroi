@@ -9,7 +9,7 @@ body {
   background: var(--color-background);
 }
 
-.header, .footer, .main {
+.footer, .main {
   width: 100%;
   max-width: var(--main-width);
   margin: 0 auto;
@@ -22,8 +22,10 @@ body {
   position: sticky;
   top: -48px;
   background: inherit;
-  margin: 0 auto;
+  margin: 0;
   padding: 64px 8vw 0;
+  max-width: 100%;
+  width: 100%;
 }
 
 .header-container {
@@ -158,17 +160,6 @@ a {
   content: "⌗";
   color: var(--font-color-extra);
   margin-left: 0.5em;
-}
-
-.footer {
-  padding: 24px 0;
-  font-size: 0.875rem;
-  color: var(--font-color-extra);
-  display: flex;
-  flex-direction: column;
-  flex-wrap: nowrap;
-  justify-content: flex-start;
-  align-content: center;
 }
 
 .footer span {

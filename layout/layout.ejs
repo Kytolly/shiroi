@@ -1,14 +1,12 @@
 <!DOCTYPE html>
 <html>
-
+  
   <!-- 标签页 -->
   <%- partial('_partial/label') %>
-
-  <!-- 全局样式引用 -->
+      
+  <!-- 配置引用 -->
   <%- partial('_partial/global') %>
-
-  <!-- 配置参数 -->
-  <body
+  <body 
     <% if (theme.image && theme.image.enable) { %>
       data-image-center="<%= theme.image.center ? 'true' : 'false' %>"
       data-image-caption="<%= theme.image.caption ? 'true' : 'false' %>"
@@ -24,34 +22,34 @@
       <% } else { %>
       data-code-block-mac-enhancer-init-folded-status="false"
       <% } %>
-    <% } %>
-  >
-  <script> window.THEME_CONFIG = {}; </script>
+  <% } %>
+>
+    <script> window.THEME_CONFIG = {}; </script>
 
-  <!-- 导航栏 -->
-  <%- partial('_partial/header') %>
+    <!-- 导航栏 -->
+    <%- partial('_partial/header') %>
 
-  <!-- 文章主容器 -->
-  <main class="main">
-    <% if (is_post() && theme.toc && theme.toc.enable && page.toc !== false) { %>
-      <div class="main-with-toc">
-        <%- partial('_partial/toc') %>
-        <div class="article-content-wrapper">
+    <!-- 文章主容器 -->
+    <main class="main">
+      <% if (is_post() && theme.toc && theme.toc.enable && page.toc !== false) { %>
+        <div class="main-with-toc">
+          <%- partial('_partial/toc') %>
+          <div class="article-content-wrapper">
+            <%- body %>
+          </div>
+        </div>
+      <% } else { %>
+        <div class="main-content-wrapper">
           <%- body %>
         </div>
-      </div>
-    <% } else { %>
-      <div class="main-content-wrapper">
-        <%- body %>
-      </div>
-    <% } %>
-  </main>
+      <% } %>
+    </main>
 
-  <!-- 页脚 -->
-  <%- partial('_partial/footer') %>
+    <!-- 页脚 -->
+    <%- partial('_partial/footer') %>
 
-  <%- js('js/code-block.js') %>
-  <%- js('js/theme.js') %>
-</body>
+    <%- js('js/code-block.js') %>
+    <%- js('js/theme.js') %>
+  </body>
 
 </html>

@@ -1,0 +1,22 @@
+<div class="tag-overview-container">
+<!-- <h2 class="page-title">所有标签</h2> -->
+<div class="tag-card-grid">
+  <% site.tags.sort('name').each(function(tag){ %>
+    <a class="tag-card" data-tag-name="<%= tag.name %>">
+      <div class="tag-card-icon">
+        <img src="<%= url_for('icon/tag-icon.svg') %>" alt="Tag Icon" style="width:1.2em;height:1.2em;vertical-align:middle;">
+      </div>
+      <div class="tag-card-info">
+        <span class="tag-card-name"><%= tag.name %></span>
+        <span class="tag-card-count">(<%= tag.posts.length %>)</span>
+      </div>
+    </a>
+  <% }) %>
+</div>
+
+<div id="filtered-articles-container" class="filtered-articles-container">
+  <!-- Articles will be dynamically loaded here -->
+</div>
+
+<div id="all-posts-data" data-posts='<%- JSON.stringify(site.posts.map(function(post){ return {title: post.title, path: url_for(post.path), tags: post.tags.map(function(tag){ return tag.name; }), date: date(post.date, "YYYY-MM-DD")} })) %>'></div>
+</div> 

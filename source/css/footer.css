@@ -5,6 +5,7 @@
     padding: 72px 8vw 24px;
     background: var(--color-background);
     overflow-x: hidden;
+    text-align: center;
 }
 
 .footer span {

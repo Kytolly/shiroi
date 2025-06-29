@@ -1,0 +1,23 @@
+<div class="page-container">
+  <div class="page-title"><%= page.title %></div>
+    <div class="page-meta">
+      <div class="date"><%- date(page.date, "YYYY MMMM Do") %></div>
+      <div class="tags">
+        <% if (page.tags && page.tags.length) { %>
+          <% page.tags.map(tag => tag.name).forEach(function (tag) { %>
+          <div class="tag-item"><%- tag %></div>
+          <% }) %>
+        <% } %>
+      </div>
+    </div>
+
+  <div class="page-content"><%- page.content %></div>
+</div>
+
+<%- js('js/theme.js') %>
+<%- js('js/code-block-header.js') %>
+<%- js('js/code-block-copy.js') %>
+<%- js('js/code-block-theme-toggle.js') %>
+<%- js('js/code-block.js') %>
+
+<%- css('css/page.css') %> 

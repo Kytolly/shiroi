@@ -1,0 +1,19 @@
+<main class="main">
+  <% if (is_post()) { %>
+    <%- partial('post') %>
+  <% } else if (is_home()) { %>
+    <%- partial('index') %>
+  <% } else if (is_archive()) { %>
+    <%- partial('archive') %>
+  <% } else if (page.layout === 'tag') { %>
+    <%- partial('tag') %>
+  <% } else if (page.layout === 'list') { %>
+    <%- partial('list') %>
+  <% } else if (is_tag()) { %>
+    <%- partial('tag') %>
+  <% } else if (is_page()) { %>
+    <%- partial('_partial/article') %>
+  <% } else { %>
+    <%- partial('_partial/404') %>
+  <% } %>
+</main>

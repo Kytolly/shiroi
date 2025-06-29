@@ -14,239 +14,94 @@ body {
   padding: 72px 0 24px;
   background: var(--color-background);
   overflow-x: hidden;
+  overflow-y: visible;
+  min-height: calc(100vh - 96px);
 }
 
 p {
   word-wrap: break-word;
   white-space: pre-wrap;
 }
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+figure,
+blockquote,
+dl,
+dd {
+  margin: 0;
+}
+
+/* ul,
+ol {
+  list-style: none;
+} */
+.post-content ul {
+  list-style: disc;
+  padding-left: 2em; /* 保证缩进美观 */
+}
+.post-content ul ul {
+  list-style: circle;
+}
+
+ul {
+  padding-inline-start: 0;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  min-width: 100vw; /* 确保占据整个视口宽度 */
+  scroll-behavior: smooth;
+  height: 100%;
+  overflow-y: scroll;
+}
+
+a:not([class]) {
+  text-decoration-skip-ink: auto;
+}
+
+img,
+picture {
+  width: auto;
+  max-width: 100%;
+  display: block;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+body::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+body::-webkit-scrollbar-thumb {
+  border-radius: 3px;
+  background-color: #c1c1c2;
+}
+
+body::-webkit-scrollbar-track {
+  background-color: transparent;
+}
 
 a {
   text-decoration: none;
   color: var(--font-color);
-}
-
-.post-list {
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-  align-items: stretch;
-}
-
-.post-item {
-  width: 100%;
-  padding-bottom: 48px;
-  margin-bottom: 48px;
-  border-bottom: 1px dashed var(--color-hr);
-  transition: all ease-in-out .3s;
-}
-
-.post-item-title {
-  display: inline-block;
-  font-size: 1.6rem;
-  font-weight: 600;
-  line-height: 1.5;
-  margin-bottom: 12px;
-  color: var(--font-color);
-}
-
-.post-item-title:hover {
-  /* color: var(--font-color); */
-  text-decoration: underline;
-  transition: all ease-in-out 0.5s;
-}
-.post-item-summary {
-  word-break: break-all;
-  margin-bottom: 12px;
-}
-
-.post-item-extra, .post-meta {
-  font-size: 0.875rem;
-  color: var(--font-color-extra);
-  display: flex;
-}
-
-.post-item-extra>.date, .post-meta>.date {
-  margin-right: 1em;
-}
-
-.post-item-extra>.tags, .post-meta>.tags {
-  display: flex;
-}
-
-.read-more {
-  padding: 0 4px;
-  color: var(--font-color);
-}
-
-.read-more:before,
-.read-more:after {
-  display: inline-block;
-  transition: transform ease-in-out 0.5s;
-}
-.read-more:before {
-  content: "{ ";
-}
-.read-more:after {
-  content: " }";
-}
-.read-more:hover:before {
-  transform: translateX(-4px);
-  transition: transform ease-in-out 0.25s;
-}
-.read-more:hover:after {
-  transform: translateX(4px);
-  transition: transform ease-in-out 0.25s;
-}
-
-.tags>.tag-item::before {
-  content: "⌗";
-  color: var(--font-color-extra);
-  margin-left: 0.5em;
-}
-
-
-.archives {
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-content: normal;
-}
-
-.archive-item {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  justify-content: flex-start;
-  align-content: center;
-  padding: 12px 0;
-}
-
-.archive-item:nth-child(odd) {
-  background: var(--color-list-item-odd);
-}
-
-.archive-item:nth-child(even) {
-  background: var(--color-list-item-even);
-}
-
-.archive-item span {
-  width: 108px;
-  color: var(--font-color-secondary);
-}
-
-.archive-item>.title {
-  flex: 1;
-  text-decoration: none;
-  transition: all ease-in-out 0.5s;
-}
-
-.archive-item>.title:hover {
-  text-decoration: underline;
-  transition: all ease-in-out 0.5s;
-  transition: color ease-in-out 0.5s;
-}
-
-.archive-item>.tags {
-  display: flex;
-  font-size: 0.9em;
-}
-
-.paginator {
-  font-size: 0.875rem;
-  width: 100%;
-  margin: 0 auto 24px;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  /* color: #eeeeee; */
-  color: var(--font-color-secondary);
-}
-
-.paginator * {
-  display: block;
-  padding: 8px 16px;
-  /* background: var(--color-background); */
-  /* border-bottom: 2px solid #eeeeee; */
-  border-bottom: 2px solid var(--color-unactive);
-  /* border-radius: 1em; */
-}
-
-.paginator .page-number {
-  text-align: center;
-  box-sizing: content-box;
-  width: 1em;
-}
-
-.paginator a {
-  margin: 4px;
-  color: var(--font-color-secondary);
-  transition: all ease-in-out 0.5s;
-}
-
-.paginator a:hover {
-  color: var(--font-color);
-  border-bottom: 2px solid var(--font-color);
-  cursor: not-allowed;
-}
-
-.paginator .current {
-  color: var(--font-color);
-  border-bottom: 2px solid var(--font-color);
-  cursor: not-allowed;
-}
-
-.post-layout-wrapper {
-  display: flex;
-  justify-content: center; /* Centers the content wrapper within the available space */
-  align-items: flex-start;
-  padding: 0 8vw; /* Matches the horizontal padding of the main content */
-}
-
-.post-content-wrapper {
-  flex-grow: 1;
-  max-width: var(--main-width); /* Keeps the article content centered and at a readable width */
-  margin: 0 auto; /* Ensures the content wrapper is centered if there's extra space */
-}
-
-.post {
-  width: 100%;
-  /* Removed max-width and margin: 0 auto; as post-content-wrapper handles centering and width */
-  /* max-width: var(--main-width); */
-  /* margin: 0 auto; */
-  /* Original padding for .post moved to .main */
-  /* padding: 72px 8vw 24px; */
-  /* background: var(--color-background); */
-  /* overflow-x: hidden; */
-}
-
-/* New: Grid layout for articles with TOC */
-.main-with-toc {
-  display: grid;
-  /* Columns: Left padding (8vw), TOC (200px), Gap (40px), Article content (flexible to main-width), Right padding (8vw) */
-  grid-template-columns: 8vw 200px 40px minmax(auto, var(--main-width)) 8vw;
-  gap: 0; /* Grid columns define gaps implicitly */
-  align-items: start; /* Align items to the top */
-}
-
-/* New: Wrapper for article content within the grid */
-.article-content-wrapper {
-  grid-column: 4; /* Place it in the 4th column of the grid */
-  /* Article content will be centered by its column definition and max-width */
-}
-
-/* Ensure .post fills its wrapper and does not impose its own max-width/margins */
-.post {
-  width: 100%;
-}
-
-/* New: Wrapper for general main content (e.g., homepage, archives) */
-.main-content-wrapper {
-  max-width: var(--main-width);
-  margin: 0 auto;
-  padding: 0 8vw; /* Matches header and footer horizontal padding */
 }

@@ -34,7 +34,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
   tagCards.forEach(card => {
     card.addEventListener('click', function(event) {
-      event.preventDefault(); // Prevent default link behavior
       const tagName = this.dataset.tagName;
 
       const filteredPosts = allPosts.filter(post => {
@@ -47,4 +46,36 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Optional: Initial rendering of all articles or a default tag's articles
   // renderArticles(allPosts);
+
+  // Function to extract tag from URL
+  function getTagFromUrl() {
+    const pathParts = window.location.pathname.split('/').filter(part => part !== '');
+    // Assuming URL format like /tags/tagName/ or /tag/tagName/
+    const tagsIndex = pathParts.indexOf('tags') !== -1 ? pathParts.indexOf('tags') : pathParts.indexOf('tag');
+    if (tagsIndex !== -1 && tagsIndex + 1 < pathParts.length) {
+      return decodeURIComponent(pathParts[tagsIndex + 1]);
+    }
+    return null;
+  }
+
+  // Initial filtering based on URL tag
+  const initialTag = getTagFromUrl();
+  if (initialTag) {
+    const filteredPosts = allPosts.filter(post => {
+      return post.tags && post.tags.includes(initialTag);
+    });
+    renderArticles(filteredPosts);
+
+    // Highlight the active tag card
+    tagCards.forEach(card => {
+      if (card.dataset.tagName === initialTag) {
+        card.classList.add('tag-card-active');
+      } else {
+        card.classList.remove('tag-card-active');
+      }
+    });
+  } else {
+    // If no tag in URL, render all articles initially or a default view
+    // renderArticles(allPosts); // Uncomment this if you want to show all posts initially when no tag is selected
+  }
 }); 

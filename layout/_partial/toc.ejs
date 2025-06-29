@@ -1,6 +1,10 @@
 <% if (theme.toc && theme.toc.enable && page.toc !== false) { %>
-  <aside class="toc-container toc-left">
-    <div class="toc-title">目录</div>
-    <%- toc(page.content) %>
+  <aside id="toc-container" class="toc-container toc-left toc-expanded">
+    <div id="toc-title" class="toc-title"><%= page.title %></div>
+    <div id="toc-content" class="toc-content">
+      <%- toc(page.content) %>
+    </div>
   </aside>
 <% } %> 
+
+<%- js('js/toc.js') %>

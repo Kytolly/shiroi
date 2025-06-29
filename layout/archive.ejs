@@ -1,5 +1,5 @@
-<ul class="archives">
-  <% page.posts.each(function (post) { %>
+<ul class="archive">
+  <% site.posts.each(function (post) { %>
   <li class="archive-item">
     <span class="date"><%= date(post.date, "YYYY.MM.DD") %></span>
     <a class="title" href="<%- url_for(post.path) %>"><%= post.title %></a>
@@ -13,3 +13,5 @@
 </ul>
 
 <%- partial('_partial/paginator') %>
+
+<%- css('css/archive.css') %>

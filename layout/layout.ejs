@@ -3,10 +3,7 @@
   
   <!-- 标签页 -->
   <%- partial('_partial/label') %>
-  <%- css('css/tags.css') %>
-      
-  <!-- 配置引用 -->
-  <%- partial('_partial/global') %>
+
   <body 
     <% if (theme.image && theme.image.enable) { %>
       data-image-center="<%= theme.image.center ? 'true' : 'false' %>"
@@ -26,32 +23,18 @@
   <% } %>
 >
     <script> window.THEME_CONFIG = {}; </script>
-
+              
+    <!-- 配置引用 -->
+    <%- partial('_partial/global') %>
+    
     <!-- 导航栏 -->
     <%- partial('_partial/header') %>
 
-    <!-- 文章主容器 -->
-    <main class="main">
-      <% if (is_post() && theme.toc && theme.toc.enable && page.toc !== false) { %>
-        <div class="main-with-toc">
-          <%- partial('_partial/toc') %>
-          <div class="article-content-wrapper">
-            <%- body %>
-          </div>
-        </div>
-      <% } else { %>
-        <div class="main-content-wrapper">
-          <%- body %>
-        </div>
-      <% } %>
-    </main>
+    <!-- 路由 根据页面类型决定渲染内容 -->
+    <%- partial('router') %>
 
     <!-- 页脚 -->
     <%- partial('_partial/footer') %>
-
-    <%- js('js/code-block.js') %>
-    <%- js('js/theme.js') %>
-    <%- js('js/tags-filters.js') %>
   </body>
 
 </html>

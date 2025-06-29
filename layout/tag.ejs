@@ -2,7 +2,7 @@
 <!-- <h2 class="page-title">所有标签</h2> -->
 <div class="tag-card-grid">
   <% site.tags.sort('name').each(function(tag){ %>
-    <a class="tag-card" data-tag-name="<%= tag.name %>">
+    <a class="tag-card" data-tag-name="<%= tag.name %>" href="<%- url_for(config.tag_dir + '/' + tag.slug + '/') %>">
       <div class="tag-card-icon">
         <img src="<%= url_for('icon/tag-icon.svg') %>" alt="Tag Icon" style="width:1.2em;height:1.2em;vertical-align:middle;">
       </div>
@@ -20,3 +20,6 @@
 
 <div id="all-posts-data" data-posts='<%- JSON.stringify(site.posts.map(function(post){ return {title: post.title, path: url_for(post.path), tags: post.tags.map(function(tag){ return tag.name; }), date: date(post.date, "YYYY-MM-DD")} })) %>'></div>
 </div> 
+
+<%- css('css/tag.css') %>
+<%- js('js/tags-filters.js') %>

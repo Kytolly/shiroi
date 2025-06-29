@@ -3,7 +3,10 @@ favicon: /icon.svg
 icon: /icon.svg
 
 menu:
-  archives: /archives
+  index: / 
+  list: /list
+  archive: /archive
+  tag: /tag
   about: /about
 
 copyright: Kytolly(shiroi)

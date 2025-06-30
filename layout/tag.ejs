@@ -1,16 +1,16 @@
 <div class="tag-overview-container">
-<!-- <h2 class="page-title">所有标签</h2> -->
-<div class="tag-card-grid">
-  <% site.tags.sort('name').each(function(tag){ %>
-    <a class="tag-card" data-tag-name="<%= tag.name %>" href="<%- url_for(config.tag_dir + '/' + tag.slug + '/') %>">
-      <div class="tag-card-icon">
-        <img src="<%= url_for('icon/tag-icon.svg') %>" alt="Tag Icon" style="width:1.2em;height:1.2em;vertical-align:middle;">
-      </div>
-      <div class="tag-card-info">
-        <span class="tag-card-name"><%= tag.name %></span>
-        <span class="tag-card-count">(<%= tag.posts.length %>)</span>
-      </div>
-    </a>
+  <!-- <h2 class="page-title">所有标签</h2> -->
+  <div class="tag-card-grid">
+    <% site.tags.sort('name').each(function(tag){ %>
+      <a class="tag-card" data-tag-name="<%= tag.name %>">
+        <div class="tag-card-icon">
+          <img src="<%= url_for('icon/tag-icon.svg') %>" alt="Tag Icon" style="width:1.2em;height:1.2em;vertical-align:middle;">
+        </div>
+        <div class="tag-card-info">
+          <span class="tag-card-name"><%= tag.name %></span>
+          <span class="tag-card-count">(<%= tag.posts.length %>)</span>
+        </div>
+      </a>
   <% }) %>
 </div>
 

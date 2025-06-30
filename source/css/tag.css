@@ -13,21 +13,19 @@
 }
 
 .tag-card-grid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 15px; /* Consistent spacing between items */
+  display: flex; /* Changed to Flexbox for better centering with wrapping */
+  flex-wrap: wrap; /* Allow items to wrap to the next line */
+  justify-content: center; /* Center flex items within their rows */
+  /* Removed grid-template-columns and gap as they are grid-specific */
 }
 
 .tag-card {
-  margin: 0; /* Managed by gap property on the grid container */
-  width: calc((100% / var(--tags-per-row)) - var(--tag-gap-offset)); /* Dynamic width controlled by JS */
-  min-width: 150px; /* Minimum width for each tag card */
-  max-width: 280px; /* Maximum width for each tag card */
+  margin: 10px; /* Add margin for spacing between flex items */
   display: flex;
   align-items: center;
   padding: 15px;
   border: 1px solid #eee;
-  border-radius: 10px;
+  border-radius: 10px; /* Rounded corners for the card */
   text-decoration: none;
   color: inherit;
   box-shadow: 0 2px 5px rgba(0,0,0,0.05);
@@ -43,7 +41,7 @@
   width: 30px;
   height: 30px;
   margin-right: 10px;
-  display: flex;
+  display: flex; /* For centering SVG */
   align-items: center;
   justify-content: center;
 }
@@ -51,7 +49,7 @@
 .tag-card-icon svg {
   width: 100%;
   height: 100%;
-  fill: #007bff;
+  fill: #007bff; /* Color for the SVG icon */
 }
 
 .tag-card-info {

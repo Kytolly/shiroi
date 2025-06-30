@@ -1,17 +1,25 @@
-<ul class="archive">
-  <% site.posts.each(function (post) { %>
-  <li class="archive-item">
-    <span class="date"><%= date(post.date, "YYYY.MM.DD") %></span>
-    <a class="title" href="<%- url_for(post.path) %>"><%= post.title %></a>
-    <!-- <div class="tags">
-      <% post.tags.map(tag => tag.name).forEach(function (tag) { %>
-        <div class="tag-item"><%- tag %></div>
-      <% }) %>
-    </div> -->
-  </li>
-  <% }) %>
-</ul>
+<div class="archive">
+<%
+  let lastYear = 0;
+  page.posts.sort('date', -1).each(function (post) {
+    const currentYear = date(post.date, 'YYYY');
+    if (currentYear !== lastYear) {
+%>
+      <h2><%= currentYear %></h2>
+<%
+      lastYear = currentYear;
+    }
+%>
+  <div class="timenode">
+    <a class="meta" href="<%- url_for(post.path) %>">
+      <time><%= date(post.date, "MM-DD") %></time> <%= post.title %>
+    </a>
+  </div>
+<%
+  });
+%>
+</div>
 
-<%- partial('_partial/paginator') %>
+<!-- <%- partial('_partial/paginator') %> -->
 
 <%- css('css/archive.css') %>

@@ -3,19 +3,27 @@
 
 <header class="header">
   <section class="header-container">
-    <a class="header-logo" href="<%- url_for('icon.svg') %>"><%= config.title %></a>
-    <ul class="header-nav">
-      <%
-        for (const name in theme.menu) {
-          const iconName = name;
-      %>
-      <li>
-        <a href="<%- url_for(theme.menu[name]) %>">
-          <img src="<%- url_for('icon/' + iconName + '.svg') %>" alt="<%= name %> icon" style="width:1.2em;height:1.2em;vertical-align:middle;">
-          <%= name %>
-        </a>
-      </li>
-      <% } %>
-    </ul>
+    <a class="header-logo" href="<%- url_for('/') %>"><%= config.title %></a>
+    <div class="header-right-section">
+      <ul class="header-nav">
+        <%
+          for (const name in theme.menu) {
+            const iconName = name;
+        %>
+        <li>
+          <a href="<%- url_for(theme.menu[name]) %>">
+            <img src="<%- url_for('icon/' + iconName + '.svg') %>" alt="<%= name %> icon" style="width:1.2em;height:1.2em;vertical-align:middle;">
+            <%= name %>
+          </a>
+        </li>
+        <% } %>
+      </ul>
+      <div class="header-search-container">
+        <img src="<%- url_for('icon/search.svg') %>" alt="Search Icon" class="search-icon" style="width:1.2em;height:1.2em;vertical-align:middle;">
+        <input type="text" id="search-input" placeholder="searching...">
+      </div>
+    </div>
   </section>
 </header>
+
+<%- js('js/search.js') %>

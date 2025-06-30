@@ -60,3 +60,33 @@ border-bottom: 1px solid var(--color-hr);
   align-items: center;
   gap: 24px;
 }
+
+.header-search-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--color-hr);
+  border-radius: 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.header-search-container .search-icon {
+  position: absolute;
+  left: 10px;
+  cursor: pointer;
+}
+
+.header-search-container input#header-search-input {
+  border: none;
+  outline: none;
+  background: transparent;
+  width: 150px;
+  padding-left: 30px;
+  padding-right: 10px;
+  color: #333;
+}
+
+.header-search-container input#header-search-input::placeholder {
+  color: #999;
+}

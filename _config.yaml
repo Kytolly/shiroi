@@ -47,3 +47,6 @@ code_block:
 toc:
   enable: true
   position: left # Options: left, right
+
+local_search:
+  enable: true

@@ -18,10 +18,13 @@
         </li>
         <% } %>
       </ul>
-      <div class="header-search-container">
+      
+      <% if (theme.local_search.enable) { %>
+      <div class="header-search-container search-trigger">
         <img src="<%- url_for('icon/search.svg') %>" alt="Search Icon" class="search-icon" style="width:1.2em;height:1.2em;vertical-align:middle;">
-        <input type="text" id="search-input" placeholder="searching...">
+        <input type="text" id="header-search-input" placeholder="<%= __('searching...') %>" readonly>
       </div>
+      <% } %>
     </div>
   </section>
 </header>

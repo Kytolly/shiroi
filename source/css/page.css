@@ -12,7 +12,6 @@
   font-weight: 600;
   line-height: 1.5;
   color: var(--font-color);
-  text-align: center; /* Center the page title */
 }
 
 .page-meta {
@@ -20,13 +19,11 @@
   color: var(--font-color-extra);
   flex: 0 0 100%;
   margin-bottom: 32px;
-  text-align: center; /* Center the page meta (date, tags) */
 }
 
 .page-content {
   display: flex;
   flex-direction: column;
-  align-items: center; /* Centers block-level content horizontally */
   width: 100%;
   color: var(--color-post-content);
   word-break: break-word;
@@ -39,7 +36,6 @@
 .page-content h5,
 .page-content h6 {
   width: 100%; /* Ensure headings take full width to be centered */
-  text-align: center;
 }
 
 .page-content p,
@@ -54,4 +50,20 @@
 .page-content img {
   display: block; /* Make images block-level to apply margin auto */
   margin: 0 auto; /* Center images */
+}
+
+.github-stats-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  width: fit-content;
+  margin-left: 0;
+  margin-right: auto;
+  align-self: flex-start; /* Overrides .page-content's align-items: center; */
+}
+
+.github-stats-card {
+  margin-right: 10px; /* Spacing between cards */
+  margin-bottom: 10px; /* Spacing below cards */
+  margin-left: 0; /* Ensure it stays left-aligned within its flex container */
 } 

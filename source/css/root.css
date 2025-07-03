@@ -39,14 +39,6 @@
   --code-block-light-border-color: #e7eaed;
   --code-block-light-lang-name-color: #8c8f9e;
 
-  /* Code block specific dark theme variables */
-  --code-block-dark-bg: #282C34;
-  --code-block-dark-header-bg: #282C34;
-  --code-block-dark-table-bg: #282C34;
-  --code-block-dark-gutter-bg: #282C34;
-  --code-block-dark-border-color: #4B5263;
-  --code-block-dark-lang-name-color: #ABB2BF;
-
   /* Blockquote colors */
   --color-blockquote-bg: #f9f9f9;
   --color-blockquote-border: #ccc;
@@ -93,6 +85,14 @@ body.dark-mode {
   /* code 背景色 */
   --color-background-code: #292c34;
   --color-border-code: #292c34;
+
+  /* Code block specific dark theme variables */
+  --code-block-dark-bg: #282C34;
+  --code-block-dark-header-bg: #282C34;
+  --code-block-dark-table-bg: #282C34;
+  --code-block-dark-gutter-bg: #282C34;
+  --code-block-dark-border-color: #4B5263;
+  --code-block-dark-lang-name-color: #ABB2BF;
 
   /* Blockquote colors */
   --color-blockquote-bg: #222222;

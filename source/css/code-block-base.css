@@ -191,4 +191,5 @@ width: 100%;
 
 .post-content figure.highlight table.hljs .code pre {
   color: var(--lang-name-color) !important;
+  background-color: transparent !important;
 }

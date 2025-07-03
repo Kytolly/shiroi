@@ -4,20 +4,22 @@
   <!-- 标签页 -->
   <%- partial('_partial/label') %>
 
-  <body>
+  <body>  
     <!-- 配置引用 -->
     <%- partial('_partial/global') %>
-    
-    <!-- 导航栏 -->
-    <%- partial('_partial/header') %>
+    <div class="page-container">
+      <!-- 导航栏 -->
+      <%- partial('_partial/header') %>
 
-    <!-- 路由 根据页面类型决定渲染内容 -->
-    <%- partial('router') %>
+      <!-- 路由 根据页面类型决定渲染内容 -->
+      <%- partial('router') %>
 
-    <!-- 页脚 -->
-    <%- partial('_partial/footer') %>
+      <!-- 页脚 -->
+      <%- partial('_partial/footer') %>
 
-    <%- partial('_partial/search') %>
+      <%- partial('_partial/search') %>
+    </div>
+    <%- js('js/background.js') %>
   </body>
 
 </html>

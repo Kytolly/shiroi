@@ -49,3 +49,15 @@ toc:
 
 local_search:
   enable: true
+
+background:
+  enable: true
+  folder: img/
+  opacity: 0.1
+  position: center
+  size: cover
+  repeat: no-repeat
+  image: 
+    mode: random # or pointed
+    count: 2 # only used when mode is random
+    name: background.jpg # only used when mode is pointed

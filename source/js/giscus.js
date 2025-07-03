@@ -14,7 +14,7 @@ function loadGiscus(theme) {
     script.setAttribute('data-reactions-enabled', cfg.reactions_enabled);
     script.setAttribute('data-emit-metadata', cfg.emit_metadata);
     script.setAttribute('data-input-position', cfg.input_position);
-    script.setAttribute('data-theme', theme);
+    script.setAttribute('data-theme', theme === 'dark' ? 'transparent_dark' : theme);
     script.setAttribute('data-lang', cfg.lang);
     script.setAttribute('data-loading', cfg.loading);
     script.crossOrigin = 'anonymous';

@@ -33,12 +33,26 @@
       loading: "<%= config.giscus.loading %>"
     },
     heading_numbering: '<%= theme.heading_numbering || config.heading_numbering %>',
-    three_line_table: '<%= theme.three_line_table || config.three_line_table %>'
+    three_line_table: '<%= theme.three_line_table || config.three_line_table %>',
+    background: {
+      enable: '<%= theme.background.enable %>',
+      folder: '<%= theme.background && theme.background.folder ? theme.background.folder : "img/" %>',
+      opacity: '<%= theme.background.opacity %>',
+      position: '<%= theme.background && theme.background.position ? theme.background.position : "center" %>',
+      size: '<%= theme.background && theme.background.size ? theme.background.size : "cover" %>',
+      repeat: '<%= theme.background && theme.background.repeat ? theme.background.repeat : "no-repeat" %>',
+      image: {
+        mode: '<%= theme.background && theme.background.image && theme.background.image.mode ? theme.background.image.mode : "random" %>',
+        name: '<%= theme.background && theme.background.image && theme.background.image.name ? theme.background.image.name : "background.jpg" %>',
+        count: '<%= theme.background && theme.background.image && theme.background.image.count ? theme.background.image.count : "1" %>'
+      }
+    },
   };
 </script>
 <script>
   console.log(window.THEME_CONFIG);
 </script>
+
 <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
@@ -107,6 +121,5 @@
   
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
   <!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0">
-
-  
 </head>
+

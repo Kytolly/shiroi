@@ -4,13 +4,11 @@ body {
   line-height: 1.75;
   letter-spacing: 0.6px;
   color: var(--font-color-secondary);
-  background: var(--color-background);
 }
 
 .main {
   width: 100%;
   padding: 72px 0 24px;
-  background: var(--color-background);
   overflow-x: hidden;
   overflow-y: visible;
   min-height: calc(100vh - 96px);
@@ -108,4 +106,14 @@ code {
 
 .post-content ul {
   padding-inline-start: 0;
+}
+
+body::before {
+  z-index: -1;
+  position: fixed;
+  /* 其它样式 */
+}
+
+body.dark-mode .page-container {
+  background: rgba(26, 26, 26, 0.7); /* Dark semi-transparent background for page-container in dark mode */
 }

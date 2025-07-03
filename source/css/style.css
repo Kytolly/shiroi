@@ -1,7 +1,5 @@
 body {
-  font-family: "Montserrat", "SF UI Text", "PingFang SC", "Hiragino Sans GB",
-    "Microsoft YaHei", "Segoe UI", "Helvetica Neue", Helvetica,
-    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+  font-family: "Times New Roman", "Noto Serif SC", serif;
   font-size: 16px;
   line-height: 1.75;
   letter-spacing: 0.6px;
@@ -43,18 +41,6 @@ dd {
   margin: 0;
 }
 
-/* ul,
-ol {
-  list-style: none;
-} */
-.post-content ul {
-  list-style: disc;
-  padding-left: 2em; /* 保证缩进美观 */
-}
-.post-content ul ul {
-  list-style: circle;
-}
-
 ul {
   padding-inline-start: 0;
 }
@@ -94,7 +80,7 @@ body::-webkit-scrollbar {
 
 body::-webkit-scrollbar-thumb {
   border-radius: 3px;
-  background-color: #c1c1c2;
+  background-color: var(--color-scrollbar-thumb);
 }
 
 body::-webkit-scrollbar-track {
@@ -104,4 +90,22 @@ body::-webkit-scrollbar-track {
 a {
   text-decoration: none;
   color: var(--font-color);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Times New Roman", "Noto Serif SC", serif;
+  font-weight: bold;
+}
+
+code {
+  font-family: "Ubuntu Mono", monospace;
+}
+
+.post-content ul {
+  padding-inline-start: 0;
 }

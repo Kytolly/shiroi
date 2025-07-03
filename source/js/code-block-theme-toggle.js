@@ -4,6 +4,7 @@
  */
 
 window.addThemeToggleButton = function(actionsContainer, codeBlock, themeToggleConfig) {
+  console.log('themeToggleConfig in addThemeToggleButton:', themeToggleConfig);
   if (!themeToggleConfig || !themeToggleConfig.enable) return;
 
   const lightButton = document.createElement('button');
@@ -18,30 +19,63 @@ window.addThemeToggleButton = function(actionsContainer, codeBlock, themeToggleC
   darkIcon.src = '/' + themeToggleConfig.to_dark_button;
   darkButton.appendChild(darkIcon);
 
-  // Initial state: assume light theme is default
-  darkButton.style.display = 'inline-block';
-  lightButton.style.display = 'none';
+  const prismLightCssId = 'prism-light-theme';
+  const prismDarkCssId = 'prism-dark-theme';
+
+  // Function to load a CSS file
+  const loadCss = (id, path) => {
+    if (!document.getElementById(id)) {
+      const link = document.createElement('link');
+      link.id = id;
+      link.rel = 'stylesheet';
+      link.href = path;
+      document.head.appendChild(link);
+    }
+  };
+
+  // Function to unload a CSS file
+  const unloadCss = (id) => {
+    const link = document.getElementById(id);
+    if (link) {
+      link.remove();
+    }
+  };
+
+  // Function to set code block theme
+  const setCodeBlockTheme = (figure, theme) => {
+    figure.classList.remove('theme-light', 'theme-dark');
+    if (theme === 'light') {
+      figure.classList.add('theme-light');
+      loadCss(prismLightCssId, themeToggleConfig.light_theme);
+      unloadCss(prismDarkCssId);
+      lightButton.style.display = 'none';
+      darkButton.style.display = 'inline-block';
+    } else if (theme === 'dark') {
+      figure.classList.add('theme-dark');
+      loadCss(prismDarkCssId, themeToggleConfig.dark_theme);
+      unloadCss(prismLightCssId);
+      darkButton.style.display = 'none';
+      lightButton.style.display = 'inline-block';
+    }
+    localStorage.setItem('code-block-theme-' + codeBlock.id, theme);
+  };
+
+  // Initial state: load saved theme or default to light
+  const savedCodeBlockTheme = localStorage.getItem('code-block-theme-' + codeBlock.id);
+  if (savedCodeBlockTheme) {
+    setCodeBlockTheme(codeBlock, savedCodeBlockTheme);
+  } else {
+    setCodeBlockTheme(codeBlock, 'light'); // Default to light theme for code blocks
+  }
 
   actionsContainer.appendChild(lightButton);
   actionsContainer.appendChild(darkButton);
 
   darkButton.addEventListener('click', () => {
-    const figure = darkButton.closest('figure.highlight');
-    if (figure) {
-      figure.classList.remove('theme-light');
-      figure.classList.add('theme-dark');
-    }
-    darkButton.style.display = 'none';
-    lightButton.style.display = 'inline-block';
+    setCodeBlockTheme(codeBlock, 'dark');
   });
 
   lightButton.addEventListener('click', () => {
-    const figure = lightButton.closest('figure.highlight');
-    if (figure) {
-      figure.classList.remove('theme-dark');
-      figure.classList.add('theme-light');
-    }
-    lightButton.style.display = 'none';
-    darkButton.style.display = 'inline-block';
+    setCodeBlockTheme(codeBlock, 'light');
   });
 }; 

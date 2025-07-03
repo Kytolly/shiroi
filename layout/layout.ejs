@@ -4,26 +4,7 @@
   <!-- 标签页 -->
   <%- partial('_partial/label') %>
 
-  <body 
-    <% if (theme.image && theme.image.enable) { %>
-      data-image-center="<%= theme.image.center ? 'true' : 'false' %>"
-      data-image-caption="<%= theme.image.caption ? 'true' : 'false' %>"
-    <% } %>
-    <% if (theme.code_block) { %>
-      data-code-block-copy-button="<%= theme.code_block.copy_button || '' %>"
-      data-code-block-theme-toggle-enable="<%= (theme.code_block.theme_toggle && theme.code_block.theme_toggle.enable) ? 'true' : 'false' %>"
-      data-code-block-theme-toggle-to-light-button="<%= (theme.code_block.theme_toggle && theme.code_block.theme_toggle.to_light_button) || '' %>"
-      data-code-block-theme-toggle-to-dark-button="<%= (theme.code_block.theme_toggle && theme.code_block.theme_toggle.to_dark_button) || '' %>"
-      data-code-block-mac-enhancer="<%= (theme.code_block.mac_enhancier && theme.code_block.mac_enhancier.enable) ? 'true' : 'false' %>"
-      <% if (theme.code_block.mac_enhancier && theme.code_block.mac_enhancier.enable) { %>
-      data-code-block-mac-enhancer-init-folded-status="<%= (theme.code_block.mac_enhancier.init_folded_status) ? 'true' : 'false' %>"
-      <% } else { %>
-      data-code-block-mac-enhancer-init-folded-status="false"
-      <% } %>
-  <% } %>
->
-    <script> window.THEME_CONFIG = {}; </script>
-              
+  <body>
     <!-- 配置引用 -->
     <%- partial('_partial/global') %>
     

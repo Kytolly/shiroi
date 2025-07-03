@@ -4,7 +4,6 @@ icon: /icon.svg
 
 menu:
   index: / 
-  list: /list
   archive: /archive
   tag: /tag
   about: /about
@@ -35,8 +34,8 @@ code_block:
   # Requires `light_theme` and `dark_theme` to be enabled.
   theme_toggle:
     enable: true
-    to_light_button: icon/light-codeblock.svg
-    to_dark_button: icon/dark-codeblock.svg
+    to_light_button: icon/light.svg
+    to_dark_button: icon/dark.svg
     light_theme: css/vscode-modern-light.css
     dark_theme: css/vscode-modern-dark.css
   mac_enhancier: 

@@ -1,18 +1,3 @@
 <% if (config.giscus.enable && (page.giscus !== false) ) { %>
-    <script src="https://giscus.app/client.js"
-      data-repo="<%= config.giscus.repo %>"
-      data-repo-id="<%= config.giscus.repo_id %>"
-      data-category="<%= config.giscus.category %>"
-      data-category-id="<%= config.giscus.category_id %>"
-      data-mapping="<%= config.giscus.mapping %>"
-      data-strict="<%= config.giscus.strict %>"
-      data-reactions-enabled="<%= config.giscus.reactions_enabled %>"
-      data-emit-metadata="<%= config.giscus.emit_metadata %>"
-      data-input-position="<%= config.giscus.input_position %>"
-      data-theme="<%= config.giscus.theme %>"
-      data-lang="<%= config.giscus.lang %>"
-      data-loading="<%= config.giscus.loading %>"
-      crossorigin="anonymous"
-      async>
-    </script>
-  <% } %>
+  <div id="giscus_thread"></div>
+<% } %>

@@ -1,4 +1,44 @@
-
+<script>
+  window.THEME_CONFIG = {
+    image: {
+      enable: '<%= theme.image && theme.image.enable %>',
+      center: '<%= theme.image && theme.image.center %>',
+      caption: '<%= theme.image && theme.image.caption %>'
+    },
+    code_block: {
+      copy_button: "<%= theme.code_block && theme.code_block.copy_button ? theme.code_block.copy_button : '' %>",
+      theme_toggle: {
+        enable: '<%= theme.code_block && theme.code_block.theme_toggle && theme.code_block.theme_toggle.enable %>',
+        to_light_button: "<%= theme.code_block && theme.code_block.theme_toggle && theme.code_block.theme_toggle.to_light_button ? theme.code_block.theme_toggle.to_light_button : '' %>",
+        to_dark_button: "<%= theme.code_block && theme.code_block.theme_toggle && theme.code_block.theme_toggle.to_dark_button ? theme.code_block.theme_toggle.to_dark_button : '' %>",
+        light_theme: "<%= theme.code_block && theme.code_block.theme_toggle && typeof theme.code_block.theme_toggle.light_theme === 'string' && theme.code_block.theme_toggle.light_theme.length > 0 ? ('/' + theme.code_block.theme_toggle.light_theme.replace(/^[\\/\\s]+/, '')).replace('//', '/') : '/css/vscode-modern-light.css' %>",
+        dark_theme: "<%= (theme.code_block && theme.code_block.theme_toggle && typeof theme.code_block.theme_toggle.dark_theme === 'string' && theme.code_block.theme_toggle.dark_theme.length > 0) ? ('/' + theme.code_block.theme_toggle.dark_theme.replace(/^[\\/\\s]+/, '')).replace('//', '/') : '/css/vscode-modern-dark.css' %>"
+      },
+      mac_enhancer: {
+        enable: '<%= theme.code_block && theme.code_block.mac_enhancier && theme.code_block.mac_enhancier.enable %>',
+        init_folded_status: '<%= theme.code_block && theme.code_block.mac_enhancier && theme.code_block.mac_enhancier.init_folded_status %>'
+      }
+    },
+    giscus: {
+      repo: "<%= config.giscus.repo %>",
+      repo_id: "<%= config.giscus.repo_id %>",
+      category: "<%= config.giscus.category %>",
+      category_id: "<%= config.giscus.category_id %>",
+      mapping: "<%= config.giscus.mapping %>",
+      strict: "<%= config.giscus.strict %>",
+      reactions_enabled: "<%= config.giscus.reactions_enabled %>",
+      emit_metadata: "<%= config.giscus.emit_metadata %>",
+      input_position: "<%= config.giscus.input_position %>",
+      lang: "<%= config.giscus.lang %>",
+      loading: "<%= config.giscus.loading %>"
+    },
+    heading_numbering: '<%= theme.heading_numbering || config.heading_numbering %>',
+    three_line_table: '<%= theme.three_line_table || config.three_line_table %>'
+  };
+</script>
+<script>
+  console.log(window.THEME_CONFIG);
+</script>
 <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
@@ -10,8 +50,10 @@
     <link rel="preconnect" href="https://cdnjs.cloudflare.com">
     <% if (is_post()){ %>
       <% if (theme.code_block && theme.code_block.theme_toggle && theme.code_block.theme_toggle.enable) { %>
-        <%- css(theme.code_block.theme_toggle.light_theme) %>
-        <%- css(theme.code_block.theme_toggle.dark_theme) %>
+        <link rel="stylesheet" href="<%= url_for('/css/vscode-modern-light.css') %>">
+        <link rel="stylesheet" href="<%= url_for('/css/vscode-modern-dark.css') %>">
+        <!-- DEBUG: url_for light path: <%= url_for('/css/vscode-modern-light.css') %> -->
+        <!-- DEBUG: url_for dark path: <%= url_for('/css/vscode-modern-dark.css') %> -->
       <% } else { %>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-light.css">
       <% } %>

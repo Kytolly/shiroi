@@ -2,6 +2,18 @@
   <% if (theme.copyright){ %>
   <span>Copyright © <%= config.copyright || theme.copyright %></span>
   <% } %>
+  <div class="theme-switch-wrapper">
+    <div class="theme-switch">
+      <div class="theme-switch-item light-mode active">
+        <%- image_tag("icon/light.svg", { class: "icon" }) %>
+      </div>
+      <div class="theme-switch-item dark-mode">
+        <%- image_tag("icon/dark.svg", { class: "icon" }) %>
+      </div>
+    </div>
+  </div>
 </footer>
 
 <%- css('css/footer.css') %>
+<%- js('js/theme-switcher.js') %>
+<%- js('js/giscus.js') %>

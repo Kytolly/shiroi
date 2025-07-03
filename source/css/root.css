@@ -31,6 +31,22 @@
   --color-background-code: #f8f8f8;
   --color-border-code: #e7eaed;
 
+  /* Code block specific light theme variables */
+  --code-block-light-bg: #f8f8f8;
+  --code-block-light-header-bg: #f8f8f8;
+  --code-block-light-table-bg: #f8f8f8;
+  --code-block-light-gutter-bg: #f8f8f8;
+  --code-block-light-border-color: #e7eaed;
+  --code-block-light-lang-name-color: #8c8f9e;
+
+  /* Code block specific dark theme variables */
+  --code-block-dark-bg: #282C34;
+  --code-block-dark-header-bg: #282C34;
+  --code-block-dark-table-bg: #282C34;
+  --code-block-dark-gutter-bg: #282C34;
+  --code-block-dark-border-color: #4B5263;
+  --code-block-dark-lang-name-color: #ABB2BF;
+
   /* Blockquote colors */
   --color-blockquote-bg: #f9f9f9;
   --color-blockquote-border: #ccc;

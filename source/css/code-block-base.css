@@ -11,12 +11,12 @@
   Dark theme (or any other theme) will override these variables.
 */
 figure.highlight {
-  --code-bg: var(--color-background-code); /* Overall background of the container */
-  --header-bg: var(--color-background-code); /* Header background */
-  --table-bg: var(--color-background-code); /* Code area background */
-  --gutter-bg: var(--color-background-code); /* Line number background, same as header */
-  --border-color: var(--color-border-code); /* All separator lines */
-  --lang-name-color: var(--font-color-extra); /* Language name text color */
+  --code-bg: var(--code-block-light-bg); /* Overall background of the container */
+  --header-bg: var(--code-block-light-header-bg); /* Header background */
+  --table-bg: var(--code-block-light-table-bg); /* Code area background */
+  --gutter-bg: var(--code-block-light-gutter-bg); /* Line number background, same as header */
+  --border-color: var(--code-block-light-border-color); /* All separator lines */
+  --lang-name-color: var(--code-block-light-lang-name-color); /* Language name text color */
 
   border-radius: 8px;
   margin: 10px 0;
@@ -26,12 +26,12 @@ figure.highlight {
 
 /* Add a class to the figure when in dark mode to switch themes */
 figure.highlight.theme-dark {
-  --code-bg: var(--color-background-code); /* Use dark mode background from root */
-  --header-bg: var(--color-background-code); /* Use dark mode background from root */
-  --table-bg: var(--color-background-code); /* Use dark mode background from root */
-  --gutter-bg: var(--color-background-code); /* Use dark mode background from root */
-  --border-color: var(--color-border-code); /* Use dark mode border from root */
-  --lang-name-color: var(--font-color-extra); /* Use dark mode extra font color from root */
+  --code-bg: var(--code-block-dark-bg); /* Use dark mode background from root */
+  --header-bg: var(--code-block-dark-header-bg); /* Use dark mode background from root */
+  --table-bg: var(--code-block-dark-table-bg); /* Use dark mode background from root */
+  --gutter-bg: var(--code-block-dark-gutter-bg); /* Use dark mode background from root */
+  --border-color: var(--code-block-dark-border-color); /* Use dark mode border from root */
+  --lang-name-color: var(--code-block-dark-lang-name-color); /* Use dark mode extra font color from root */
 }
 
 /* Main container: no border/shadow, just a rounded shape with a background */
@@ -99,6 +99,7 @@ figure.highlight table.hljs {
 
 .post-content figure.highlight table.hljs .code {
   padding: 0.5em !important;
+  background-color: var(--table-bg); /* Add background color for code area */
 }
 
 /* Also color the gutter text */
@@ -186,4 +187,8 @@ margin-right: 12px;
 
 .hljs .code {
 width: 100%;
+}
+
+.post-content figure.highlight table.hljs .code pre {
+  color: var(--lang-name-color) !important;
 }

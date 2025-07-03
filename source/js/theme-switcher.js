@@ -3,12 +3,33 @@ document.addEventListener('DOMContentLoaded', () => {
   const body = document.body;
 
   // Function to set the theme
-  const setTheme = (theme) => {
+  window.setTheme = (theme) => {
     body.classList.remove('light-mode', 'dark-mode');
     body.classList.add(theme + '-mode');
     localStorage.setItem('theme', theme);
     updateActiveSwitch(theme);
     if (window.reloadGiscusTheme) window.reloadGiscusTheme(theme);
+
+    // Update all code blocks to match the global theme
+    document.querySelectorAll('figure.highlight').forEach(codeBlock => {
+      // Always apply the global theme to the code block
+      codeBlock.classList.remove('theme-light', 'theme-dark');
+      codeBlock.classList.add('theme-' + theme);
+
+      // Update the visibility of the individual theme toggle buttons
+      const lightButton = codeBlock.querySelector('.theme-toggle-btn.light');
+      const darkButton = codeBlock.querySelector('.theme-toggle-btn.dark');
+
+      if (lightButton && darkButton) {
+        if (theme === 'light') {
+          lightButton.style.display = 'none';
+          darkButton.style.display = 'inline-block';
+        } else if (theme === 'dark') {
+          darkButton.style.display = 'none';
+          lightButton.style.display = 'inline-block';
+        }
+      }
+    });
   };
 
   // Function to update the active state of the switch buttons

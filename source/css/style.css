@@ -114,6 +114,6 @@ body::before {
   /* 其它样式 */
 }
 
-body.dark-mode .page-container {
-  background: rgba(26, 26, 26, 0.7); /* Dark semi-transparent background for page-container in dark mode */
+body.dark-mode .site-container {
+  background: rgba(26, 26, 26, 0.7); /* Dark semi-transparent background for site-container in dark mode */
 }
